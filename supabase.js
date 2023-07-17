@@ -18,7 +18,7 @@ const ExpoSecureStoreAdapter = {
 }
   // Supabase handling
 
-  console.log('supabase: ', SUPABASE_API_KEY, SUPABASE_URL)
+  // console.log('supabase: ', SUPABASE_API_KEY, SUPABASE_URL)
   const supabase = createClient(SUPABASE_URL, SUPABASE_API_KEY, {
     auth: {
       storage: ExpoSecureStoreAdapter,
