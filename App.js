@@ -3,14 +3,14 @@ import React from 'react';
 import { StyleSheet, ImageBackground, SafeAreaView, View, Text } from 'react-native';
 import { useEffect } from 'react';
 import { useFonts } from 'expo-font';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 // import { Linking } from 'expo-linking';
 
 // Screens
 import GuestHome from './src/components/guest/GuestHome';
 import UserHome from './src/components/users/UserHome';
-// import SignupNew from './src/components/guest/SignupNew';
+import SignupNew from './src/components/guest/SignupNew';
 import SignInView from './src/components/guest/SignInView';
 // import CheckEmail from './src/components/guest/CheckEmail';
 
@@ -30,7 +30,13 @@ const App = () => {
     return null;
   }
 
-
+const navTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: 'transparent',
+  }
+}
   return (
     <SafeAreaView style={styles.container}>
       <ImageBackground
@@ -38,13 +44,18 @@ const App = () => {
         style={styles.backgroundImage}
         resizeMode='cover'
       >
-          <NavigationContainer>
+          <NavigationContainer theme={navTheme}>
             <Stack.Navigator
               initialRouteName='Guest Home'
-              screenOptions={{ headerShown: false }}
+              theme={navTheme}
+              screenOptions={{
+                headerShown: false,
+                detachPreviousScreen: true,
+                presentation: 'transparentModal',
+              }}
             >
               <Stack.Screen name="Guest Home" component={GuestHome} />
-              {/* <Stack.Screen name="New User Signup" component={SignupNew} /> */}
+              <Stack.Screen name="New User Signup" component={SignupNew} />
               <Stack.Screen name="Sign In" component={SignInView} />
               {/* <Stack.Screen name="Check Email" component={CheckEmail} /> */}
               <Stack.Screen name="User Home" component={UserHome} />

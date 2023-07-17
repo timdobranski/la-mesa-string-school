@@ -14,12 +14,12 @@ const GuestHome = () => {
   const nav = useNavigation();
 
   return (
-    <ImageBackground
-    source={require('../../../assets/images/backgroundVerticalDimmer.jpg')}
-    style={styles.backgroundImage}
-    resizeMode='cover'
-  >
-    < ScrollView contentContainerStyle={styles.guestHomeContainer}>
+  //   <ImageBackground
+  //   source={require('../../../assets/images/backgroundVerticalDimmer.jpg')}
+  //   style={styles.backgroundImage}
+  //   resizeMode='cover'
+  // >
+    < ScrollView contentContainerStyle={styles.scrollviewChildren} style={styles.container}>
       <Header />
       {/* <Text style={styles.text}>
         {`Welcome to the String School mobile app! Current students can sign in below:`}
@@ -34,14 +34,18 @@ const GuestHome = () => {
       </Text>
       <Schedule />
     </ScrollView>
-    </ImageBackground>
+    // </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
-  guestHomeContainer: {
+  container: {
+    backgroundColor: 'transparent',
+  },
+  scrollviewChildren: {
     backgroundColor: 'transparent',
     alignItems: 'center',
+    textAlign: 'center',
   },
   text: {
     color: 'white',

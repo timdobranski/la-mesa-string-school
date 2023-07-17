@@ -1,6 +1,6 @@
 import React from 'react';
 import SignIn from './SignIn';
-import { Text, ImageBackground, StyleSheet, Pressable } from 'react-native';
+import { Text, ImageBackground, StyleSheet, Pressable, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import goTo from '../helpers/navigation';
@@ -8,21 +8,18 @@ import goTo from '../helpers/navigation';
 const SignInView = () => {
   const nav = useNavigation();
   return (
-    <ImageBackground
-      source={require('../../../assets/images/backgroundVerticalDimmer.jpg')}
-      style={styles.backgroundImage}
-      resizeMode='cover'>
 
+    <View>
         <Text style={styles.text}>{ `Sign In`}</Text>
         <Pressable onPress={() => {goTo.GuestHome(nav)}} style={styles.backContainer}>
           <Ionicons name="arrow-back-circle" size={50} color="white" />
-          <Text style={styles.text}>{ `To schedule`}</Text>
         </Pressable>
+          <Text style={styles.text}>{ `To schedule`}</Text>
         <SignIn />
 
-      {/* <ScrollView contentContainerStyle={styles.container}>
+       {/* <ScrollView contentContainerStyle={styles.container}>
       </ScrollView> */}
-    </ImageBackground>
+    </View>
   )
 };
 

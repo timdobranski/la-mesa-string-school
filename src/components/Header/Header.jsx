@@ -1,3 +1,4 @@
+import React from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 
 export default function Header() {
@@ -21,6 +22,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 20,
     marginBottom: 20,
+    backgroundColor: 'transparent',
   },
   logo: {
     flex: 1,
