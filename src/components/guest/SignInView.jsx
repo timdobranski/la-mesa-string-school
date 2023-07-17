@@ -16,9 +16,6 @@ const SignInView = () => {
         </Pressable>
           <Text style={styles.text}>{ `To schedule`}</Text>
         <SignIn />
-
-       {/* <ScrollView contentContainerStyle={styles.container}>
-      </ScrollView> */}
     </View>
   )
 };
