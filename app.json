@@ -29,8 +29,6 @@
       "favicon": "./assets/favicon.png"
     },
     "extra": {
-      "SUPABASE_URL": "https://fwurwvajaafiyttyvpyt.supabase.co",
-      "SUPABASE_PUBLIC_API_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ3dXJ3dmFqYWFmaXl0dHl2cHl0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODkwNTU3ODUsImV4cCI6MjAwNDYzMTc4NX0.sLduM2y8Gn879nGaEOgW_X2zJMMHPahGtXjoZibsBGE"
     },
     "plugins": [
       "@react-native-google-signin/google-signin"
