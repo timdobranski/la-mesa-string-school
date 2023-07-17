@@ -1,0 +1,38 @@
+{
+  "expo": {
+    "name": "la-mesa-string-school",
+    "slug": "la-mesa-string-school",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.timdobranski.lamesastringschool"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "SUPABASE_URL": "https://fwurwvajaafiyttyvpyt.supabase.co",
+      "SUPABASE_PUBLIC_API_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ3dXJ3dmFqYWFmaXl0dHl2cHl0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODkwNTU3ODUsImV4cCI6MjAwNDYzMTc4NX0.sLduM2y8Gn879nGaEOgW_X2zJMMHPahGtXjoZibsBGE"
+    },
+    "plugins": [
+      "@react-native-google-signin/google-signin"
+    ]
+  }
+}
