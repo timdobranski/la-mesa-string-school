@@ -15,18 +15,23 @@ export default function Header() {
 
 const styles = StyleSheet.create({
   headerContainer: {
-    width: '85%',
+    width: '100%',
     aspectRatio: 5,
     alignSelf: 'center',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 20,
+    paddingTop: 20,
+    paddingBottom: 20,
     marginBottom: 20,
-    backgroundColor: 'transparent',
+    backgroundColor: 'black',
+    borderBottomWidth: 3,
+    borderBottomColor: 'white',
+    height: '7%'
+
   },
   logo: {
     flex: 1,
-    width: '100%',
+    width: '85%',
     resizeMode: 'contain',
   },
 });

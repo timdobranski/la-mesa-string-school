@@ -20,21 +20,21 @@
     <string>1.0.0</string>
     <key>CFBundleSignature</key>
     <string>????</string>
-  <key>CFBundleURLTypes</key>
-  <array>
-    <dict>
-      <key>CFBundleURLSchemes</key>
-      <array>
-        <string>com.timdobranski.lamesastringschool</string>
-      </array>
-    </dict>
-    <dict>
-      <key>CFBundleURLSchemes</key>
-      <array>
-        <string>com.googleusercontent.apps.992856301413-eu0ms9q8tinebks8fmn7ggr0r1g698fl</string>
-      </array>
-    </dict>
-  </array>
+    <key>CFBundleURLTypes</key>
+    <array>
+      <dict>
+        <key>CFBundleURLSchemes</key>
+        <array>
+          <string>com.timdobranski.lamesastringschool</string>
+        </array>
+      </dict>
+      <dict>
+        <key>CFBundleURLSchemes</key>
+        <array>
+          <string>com.googleusercontent.apps.992856301413-eu0ms9q8tinebks8fmn7ggr0r1g698fl</string>
+        </array>
+      </dict>
+    </array>
     <key>CFBundleVersion</key>
     <string>1</string>
     <key>LSRequiresIPhoneOS</key>
@@ -78,5 +78,7 @@
     <string>Light</string>
     <key>UIViewControllerBasedStatusBarAppearance</key>
     <false/>
+    <key>GIDServerClientID</key>
+    <string>992856301413-vucu6ot47ob4ddb148i0dd5m2uc3juns.apps.googleusercontent.com</string>
   </dict>
 </plist>

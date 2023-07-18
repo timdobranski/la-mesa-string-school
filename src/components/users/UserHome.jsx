@@ -14,7 +14,7 @@ export default function UserHome() {
   async function getAndSetSession ()  {
     const { data, error } = await supabase.auth.getSession()
     if (data) {
-      console.log('Session User ', data.session.user.email)
+      console.log('Session User ', data)
       setUserSession(data.session)
     }
     if (error) {console.log('Error in getSession; navigating to Guest Home: ', error);

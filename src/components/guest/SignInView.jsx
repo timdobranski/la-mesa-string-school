@@ -1,5 +1,6 @@
 import React from 'react';
 import SignIn from './SignIn';
+import Header from '../Header/Header';
 import { Text, ImageBackground, StyleSheet, Pressable, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
@@ -10,6 +11,7 @@ const SignInView = () => {
   return (
 
     <View>
+      {/* <Header /> */}
         <Text style={styles.text}>{ `Sign In`}</Text>
         <Pressable onPress={() => {goTo.GuestHome(nav)}} style={styles.backContainer}>
           <Ionicons name="arrow-back-circle" size={50} color="white" />
