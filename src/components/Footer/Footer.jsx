@@ -1,34 +1,48 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { FontAwesome, AntDesign, MaterialIcons } from '@expo/vector-icons';
+import { View, Text, StyleSheet, Pressable } from 'react-native';
+import { FontAwesome, AntDesign, MaterialIcons, Ionicons } from '@expo/vector-icons';
+import goTo from '../helpers/navigation';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Footer() {
+  const nav = useNavigation();
   return (
     <View style={styles.footerContainer}>
-      <View style={styles.iconContainer}>
+
+      <Pressable
+      style={styles.iconContainer}
+      onPress={() => {goTo.UserHome(nav)}}>
+        <Ionicons name='home' style={styles.icons} />
+        <Text style={styles.text}>Home</Text>
+      </Pressable>
+
+      <Pressable
+      style={styles.iconContainer}
+      onPress={() => {goTo.SchedulingAndPayments(nav)}}>
         <AntDesign name="calendar" style={styles.icons} />
-        <Text style={styles.text}>Scheduling</Text>
-      </View>
+        <Text style={styles.text}>{'Scheduling'}</Text>
+      </Pressable>
 
-      <View style={styles.iconContainer}>
-        <AntDesign name='creditcard' style={styles.icons} />
-        <Text style={styles.text}>Payments</Text>
-      </View>
+      <Pressable
+      style={styles.iconContainer}
+      onPress={() => {goTo.StudentResources(nav)}}>
+        <Ionicons name="md-musical-notes" style={styles.icons} />
+        <Text style={styles.text}>Resources</Text>
+        </Pressable>
 
-      <View style={styles.iconContainer}>
-        <MaterialIcons name="timer" style={styles.icons} />
-        <Text style={styles.text}>Practice</Text>
-      </View>
-
-      <View style={styles.iconContainer}>
+      <Pressable
+      style={styles.iconContainer}
+      onPress={() => {goTo.PracticeAndProgress(nav)}}>
         <FontAwesome name="line-chart" style={styles.icons} />
         <Text style={styles.text}>Progress</Text>
-      </View>
+        </Pressable>
 
-      <View style={styles.iconContainer}>
+      <Pressable
+        style={styles.iconContainer}
+        onPress={() => {goTo.UserProfile(nav)}}>
         <FontAwesome name="user-circle" style={styles.icons} />
         <Text style={styles.text}>Profile</Text>
-      </View>
+        </Pressable>
     </View>
   );
 }

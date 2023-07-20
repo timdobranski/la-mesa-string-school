@@ -17,14 +17,20 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.timdobranski.lamesastringschool",
-      "googleServicesFile": "./GoogleService-Info.plist"
+      "infoPlist": {
+        "CFBundleURLTypes": [
+          {
+            "CFBundleURLSchemes": ["com.googleusercontent.apps.17898xxxxxx-xxxxxqhqj0exxxxxpl03xxx"]
+          }
+        ]
+      }
+
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "googleServicesFile": "./google-services.json",
       "package": "com.timdobranski.lamesastringschool"
     },
     "web": {

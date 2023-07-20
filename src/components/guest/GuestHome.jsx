@@ -1,5 +1,5 @@
 import React from 'react';
-import { ImageBackground, StyleSheet, Text, ScrollView, Pressable } from 'react-native';
+import { ImageBackground, StyleSheet, Text, ScrollView, Pressable, View } from 'react-native';
 import Header from '../Header/Header';
 import Schedule from '../Schedule/Schedule';
 import { useNavigation } from '@react-navigation/native';
@@ -14,16 +14,12 @@ const GuestHome = () => {
   const nav = useNavigation();
 
   return (
-  //   <ImageBackground
-  //   source={require('../../../assets/images/backgroundVerticalDimmer.jpg')}
-  //   style={styles.backgroundImage}
-  //   resizeMode='cover'
-  // >
+
     < ScrollView contentContainerStyle={styles.scrollviewChildren} style={styles.container}>
+      <View style={styles.headerContainer}>
       <Header />
-      {/* <Text style={styles.text}>
-        {`Welcome to the String School mobile app! Current students can sign in below:`}
-      </Text> */}
+      </View>
+
       <Pressable
         onPress={() =>{ console.log('clicked!'); goTo.SignIn(nav)}}
         style={styles.signInButton}>
@@ -41,6 +37,9 @@ const GuestHome = () => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'transparent',
+  },
+  headerContainer: {
+
   },
   scrollviewChildren: {
     backgroundColor: 'transparent',

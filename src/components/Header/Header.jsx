@@ -16,22 +16,23 @@ export default function Header() {
 const styles = StyleSheet.create({
   headerContainer: {
     width: '100%',
-    aspectRatio: 5,
-    alignSelf: 'center',
+    aspectRatio: 4,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: 20,
-    paddingBottom: 20,
-    marginBottom: 20,
+    paddingTop: 5,
+    paddingBottom: 5,
+    marginBottom: 15,
     backgroundColor: 'black',
-    borderBottomWidth: 3,
-    borderBottomColor: 'white',
-    height: '7%'
+    borderWidth: 5,
+    borderColor: 'white',
+    borderRadius: 5,
+    // height: '13%'
 
   },
   logo: {
     flex: 1,
-    width: '85%',
+    width: '90%',
     resizeMode: 'contain',
+
   },
 });

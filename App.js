@@ -4,7 +4,7 @@ import { StyleSheet, ImageBackground, SafeAreaView, View, Text } from 'react-nat
 import { useEffect } from 'react';
 import { useFonts } from 'expo-font';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
 // import { Linking } from 'expo-linking';
 
 // Screens
@@ -12,6 +12,10 @@ import GuestHome from './src/components/guest/GuestHome';
 import UserHome from './src/components/users/UserHome';
 import SignupNew from './src/components/guest/SignupNew';
 import SignInView from './src/components/guest/SignInView';
+import SchedulingAndPayments from './src/components/users/Scheduling&Payments';
+import PracticeAndProgress from './src/components/users/Practice&Progress';
+import StudentResources from './src/components/users/StudentResources';
+import UserProfile from './src/components/users/UserProfile';
 // import CheckEmail from './src/components/guest/CheckEmail';
 
 
@@ -52,13 +56,19 @@ const navTheme = {
                 headerShown: false,
                 detachPreviousScreen: true,
                 presentation: 'transparentModal',
+                animationEnabled: false,
+                ...TransitionPresets.FadeTransition,
               }}
             >
               <Stack.Screen name="Guest Home" component={GuestHome} />
               <Stack.Screen name="New User Signup" component={SignupNew} />
               <Stack.Screen name="Sign In" component={SignInView} />
-              {/* <Stack.Screen name="Check Email" component={CheckEmail} /> */}
               <Stack.Screen name="User Home" component={UserHome} />
+              <Stack.Screen name="User Profile" component={UserProfile} />
+              <Stack.Screen name="Student Resources" component={StudentResources} />
+              <Stack.Screen name="Scheduling & Payments" component={SchedulingAndPayments} />
+              <Stack.Screen name="Practice & Progress" component={PracticeAndProgress} />
+              {/* <Stack.Screen name="Check Email" component={CheckEmail} /> */}
             </Stack.Navigator>
           </NavigationContainer>
       </ImageBackground>

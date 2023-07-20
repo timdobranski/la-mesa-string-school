@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Platform } from 'react-native';
+import axios from 'axios';
 import { Alert, StyleSheet, View, Text } from 'react-native';
 import  supabase  from '../../../supabase';
 import { Button, Input } from '@rneui/themed';
 import goTo from '../helpers/navigation';
 import { useNavigation } from '@react-navigation/native';
-import { GOOGLE_IOS_CLIENT_ID, GOOGLE_WEB_CLIENT_ID } from '@env';
-import {
-  GoogleSignin,
-  GoogleSigninButton,
-  statusCodes,
+import jwt_decode from 'jwt-decode';
+import { GOOGLE_IOS_CLIENT_ID, GOOGLE_WEB_CLIENT_ID, SUPABASE_API_KEY } from '@env';
+import { Linking } from 'react-native';
+import {GoogleSignin, GoogleSigninButton, statusCodes,
 } from '@react-native-google-signin/google-signin';
 
-const nonce = 'WxV3XoiAqmvpY025Auby1HbdU9jHmUiBlC2ALFu-Um0'
+
 export default function SignIn() {
   const nav = useNavigation();
   const [email, setEmail] = useState('');
@@ -20,6 +20,9 @@ export default function SignIn() {
   const [loading, setLoading] = useState(false);
 
 
+  const clientId = GOOGLE_IOS_CLIENT_ID;
+
+  // sign in manually with email and password
   async function signInWithEmail() {
     setLoading(true)
     const { error } = await supabase.auth.signInWithPassword({
@@ -34,50 +37,82 @@ export default function SignIn() {
     }
     setLoading(false)
   }
-
-  let clientId = null;
-  if (Platform.OS === 'ios') {
-    clientId = GOOGLE_IOS_CLIENT_ID
-  } else if (Platform.OS === 'android') {
-    clientId = null;
-  }
-
+  // native google signin
   async function signInWithGoogle() {
-    console.log('signing in with google');
     GoogleSignin.configure({
-      // webClientId: GOOGLE_WEB_CLIENT_ID, // client ID of type WEB for your server (needed to verify user ID and offline access)
-      // offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
-      // hostedDomain: '', // specifies a hosted domain restriction
-      iosClientId: clientId, // [iOS] if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
-      // openIdRealm: 'http://lamesastringschool.com', // [iOS] The OpenID2 realm of the home web server. This allows Google to include the user's OpenID Identifier in the OpenID Connect ID token.
-      // profileImageSize: 120, // [iOS] The desired height (and width) of the profile image. Defaults to 120px
+      iosClientId: clientId,
+      webClientId: GOOGLE_WEB_CLIENT_ID,
+      offlineAccess: true,
     });
     try {
-      await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
-
-      console.log('userInfo.idToken: ', userInfo.idToken)
+      // supabase stuff
       const supabaseSigninOptions = {
         provider: 'google',
         token: userInfo.idToken,
-        nonce: nonce,
       };
-      const { error, response } = await supabase.auth.signInWithIdToken(supabaseSigninOptions);
-     console.error(error)
-      // const session = await supabase.auth.getSession();
-      // console.log('error: ', error)
-      // goTo.UserHome(nav);
+      const { error, response } = await supabase.auth.signInWithIdToken({
+        provider: 'google',
+        idToken: userInfo.idToken,
+      });
+      console.log('response from supabase: ', response);
+      // logs [AuthApiError: Passed nonce and nonce in id_token should either both exist or not. ]
+      console.log('error from supabase: ', error);
     } catch (error) {
-      console.log(error);
-      // Handle error
+      console.log('error: ', error);
+  }
+}
+
+  // Uses web flow and async/await
+  async function googleSignin2() {
+    // get the url
+    const { data, error } = await supabase.auth.signInWithOAuth({provider: 'google'});
+
+    if (error) { console.error('Error signing in:', error);
+      return;
+    }
+
+    if (data) {
+      // data contains
+      console.log('signInWithOAuth response: ', data)
+      await Linking.openURL(data.url);
     }
   }
 
 
+      // signout
+      async function signOut() {
+        supabase.auth.signOut()
+        .then((res) => {
+          console.log('signed out: ', res);
+        })
+        .catch((err) => {
+          console.log('error signing out: ', err);
+        })
+      }
+      // logs the session
+      const logSession = () => {
+        supabase.auth.storage.session()
+        .then((session) => {
+          console.log('session from logSession: ', session);
+          if (session.user) {
+            goTo.UserHome(nav);
+          }
+        })
+      }
 
 
-  return (
-    <View style={styles.container}>
+
+      // signInWithGoogle options:
+      // webClientId: GOOGLE_WEB_CLIENT_ID, // client ID of type WEB for your server (needed to verify user ID and offline access)
+      // offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
+      // hostedDomain: '', // specifies a hosted domain restriction
+      // openIdRealm: 'http://lamesastringschool.com', // [iOS] The OpenID2 realm of the home web server. This allows Google to include the user's OpenID Identifier in the OpenID Connect ID token.
+      // profileImageSize: 120, // [iOS] The desired height (and width) of the profile image. Defaults to 120px
+
+
+      return (
+        <View style={styles.container}>
 
       <View style={[styles.verticallySpaced]}>
         <Input
@@ -88,7 +123,7 @@ export default function SignIn() {
           placeholder="email@address.com"
           autoCapitalize={'none'}
           color='white'
-        />
+          />
       </View>
 
       <View style={styles.verticallySpaced}>
@@ -101,7 +136,7 @@ export default function SignIn() {
           placeholder="at least 6 characters"
           autoCapitalize={'none'}
           color='white'
-        />
+          />
       <View style={[styles.verticallySpaced, styles.centered]}>
         <Button title="Sign in" disabled={loading} onPress={() => signInWithEmail()} />
         <Text style={styles.or}>Or, sign in with Google: </Text>
@@ -109,6 +144,9 @@ export default function SignIn() {
         size={GoogleSigninButton.Size.Wide}
         onPress={signInWithGoogle}
         />
+        <Button title="Google signin 2" onPress={googleSignin2} />
+        <Button title="Home" onPress={() => {goTo.UserHome(nav)}} />
+
       </View>
       </View>
     </View>
@@ -144,3 +182,23 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
 })
+
+// manual post request to supabase (failed 400)
+
+// const url = 'https://fwurwvajaafiyttyvpyt.supabase.co/auth/v1/token?grant_type=id_token';
+// const data = {
+//   id_token: userInfo.idToken,
+//   provider: 'google'
+// }
+// const headers = {
+//   'Content-Type': 'application/json',
+//   'apiKey': SUPABASE_API_KEY,
+// };
+// const response = await axios.post(url, data, { headers });
+// console.log('response from axios: ', response);
+
+// } catch (error) {
+// console.log(error);
+// // Handle error
+// }
+// }

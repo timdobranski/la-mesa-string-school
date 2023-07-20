@@ -8,7 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 import UserHomeInfoTable from './UserHomeInfoTable';
 
 
-export default function UserHome() {
+export default function UserProfile() {
   const [userSession, setUserSession] = useState(null);
   const nav = useNavigation();
 
@@ -36,10 +36,17 @@ export default function UserHome() {
           </Pressable>
         </View>
 
-          <Text style={styles.studentName}>Levi Sklar</Text>
+          <Text style={styles.header}>Your Profile</Text>
+          <Text style={styles.text}>Click on a value to edit it</Text>
+          <Text style={styles.text}>First Name</Text>
+          <Text style={styles.text}>Last Name</Text>
+          <Text style={styles.text}>Email</Text>
+          <Text style={styles.text}>Phone</Text>
+          <Text style={styles.text}>Communication Preference</Text>
+          <Text style={styles.text}>Primary Contact</Text>
 
 
-          <UserHomeInfoTable />
+
 
         </ScrollView>
         <Footer />
@@ -58,6 +65,7 @@ const styles = StyleSheet.create({
     fontFamily: 'economica',
     fontSize: 22,
     fontWeight: 'bold',
+    textAlign: 'center',
   },
   signOutContainer: {
     alignItems: 'flex-end',
@@ -69,7 +77,7 @@ const styles = StyleSheet.create({
     padding: 10,
 
   },
-  studentName: {
+  header: {
     color: 'white',
     fontFamily: 'economica',
     fontSize: 40,

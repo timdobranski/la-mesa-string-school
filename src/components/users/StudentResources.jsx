@@ -8,7 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 import UserHomeInfoTable from './UserHomeInfoTable';
 
 
-export default function UserHome() {
+export default function StudentResources() {
   const [userSession, setUserSession] = useState(null);
   const nav = useNavigation();
 
@@ -36,10 +36,13 @@ export default function UserHome() {
           </Pressable>
         </View>
 
-          <Text style={styles.studentName}>Levi Sklar</Text>
+          <Text style={styles.header}>Songs & Exercises</Text>
+          <Text style={styles.text}>{`Here's a song`}</Text>
+          <Text style={styles.text}>{`and another`}</Text>
+          <Text style={styles.text}>{`but not this`}</Text>
 
 
-          <UserHomeInfoTable />
+
 
         </ScrollView>
         <Footer />
@@ -58,6 +61,7 @@ const styles = StyleSheet.create({
     fontFamily: 'economica',
     fontSize: 22,
     fontWeight: 'bold',
+    textAlign: 'center',
   },
   signOutContainer: {
     alignItems: 'flex-end',
@@ -69,7 +73,7 @@ const styles = StyleSheet.create({
     padding: 10,
 
   },
-  studentName: {
+  header: {
     color: 'white',
     fontFamily: 'economica',
     fontSize: 40,

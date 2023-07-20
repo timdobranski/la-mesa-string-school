@@ -20,21 +20,18 @@
     <string>1.0.0</string>
     <key>CFBundleSignature</key>
     <string>????</string>
+    <key>GIDClientID</key>
+    <string>992856301413-eu0ms9q8tinebks8fmn7ggr0r1g698fl.apps.googleusercontent.com</string>
     <key>CFBundleURLTypes</key>
-    <array>
+    <!-- <array>
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>com.timdobranski.lamesastringschool</string>
-        </array>
-      </dict>
-      <dict>
-        <key>CFBundleURLSchemes</key>
-        <array>
+          <string>stringschool</string>
           <string>com.googleusercontent.apps.992856301413-eu0ms9q8tinebks8fmn7ggr0r1g698fl</string>
         </array>
       </dict>
-    </array>
+    </array> -->
     <key>CFBundleVersion</key>
     <string>1</string>
     <key>LSRequiresIPhoneOS</key>

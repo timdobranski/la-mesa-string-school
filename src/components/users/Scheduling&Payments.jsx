@@ -8,7 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 import UserHomeInfoTable from './UserHomeInfoTable';
 
 
-export default function UserHome() {
+export default function SchedulingAndPayments() {
   const [userSession, setUserSession] = useState(null);
   const nav = useNavigation();
 
@@ -36,10 +36,19 @@ export default function UserHome() {
           </Pressable>
         </View>
 
-          <Text style={styles.studentName}>Levi Sklar</Text>
+          <Text style={styles.header}>Scheduling & Payments</Text>
+
+          <Text style={styles.text}>Move A Lesson</Text>
+          <Text style={styles.comment}>Cancel and reschedule now</Text>
+
+          <Text style={styles.text}>Cancel A Lesson</Text>
+          <Text style={styles.comment}>Cancel now and reschedule later</Text>
+
+          <Text style={styles.text}>Scheduling A Makeup</Text>
+          <Text style={styles.comment}>Use a makeup credit</Text>
 
 
-          <UserHomeInfoTable />
+
 
         </ScrollView>
         <Footer />
@@ -57,7 +66,9 @@ const styles = StyleSheet.create({
     color: 'white',
     fontFamily: 'economica',
     fontSize: 22,
-    fontWeight: 'bold',
+    textDecorationLine: 'underline',
+    textAlign: 'center',
+    marginTop:30
   },
   signOutContainer: {
     alignItems: 'flex-end',
@@ -69,11 +80,16 @@ const styles = StyleSheet.create({
     padding: 10,
 
   },
-  studentName: {
+  header: {
     color: 'white',
     fontFamily: 'economica',
     fontSize: 40,
     textAlign: 'center',
     marginVertical: 20,
+  },
+  comment: {
+    color: '#cccccc',
+    fontStyle: 'italic',
+    textAlign: 'center',
   }
 });

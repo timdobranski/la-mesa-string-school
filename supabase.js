@@ -7,6 +7,7 @@ import { SUPABASE_API_KEY, SUPABASE_URL } from "@env";
 
 const ExpoSecureStoreAdapter = {
   getItem: (key) => {
+    // console.log('getting secure store key: ', key)
     return SecureStore.getItemAsync(key)
   },
   setItem: (key, value) => {
@@ -19,14 +20,16 @@ const ExpoSecureStoreAdapter = {
   // Supabase handling
 
   // console.log('supabase: ', SUPABASE_API_KEY, SUPABASE_URL)
-  const supabase = createClient(SUPABASE_URL, SUPABASE_API_KEY, {
+  const supabase = createClient(SUPABASE_URL, SUPABASE_API_KEY,
+    {
     auth: {
       storage: ExpoSecureStoreAdapter,
       autoRefreshToken: true,
       persistSession: true,
       detectSessionInUrl: false,
     }
-  });
+  }
+  );
 
   export default supabase;
 
