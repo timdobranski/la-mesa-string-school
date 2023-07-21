@@ -1,16 +1,15 @@
 import React from 'react';
-import { ImageBackground, StyleSheet, Text, ScrollView, Pressable, View } from 'react-native';
+import { StyleSheet, Text, ScrollView, Pressable, View } from 'react-native';
 import Header from '../Header/Header';
 import Schedule from '../Schedule/Schedule';
 import { useNavigation } from '@react-navigation/native';
-// import { useEffect, useState }  from 'react';
 import goTo from '../helpers/navigation';
-import supabase from '../../../supabase';
+import { Ionicons } from '@expo/vector-icons';
 
 
 
 
-const GuestHome = () => {
+const SelectSpot = () => {
   const nav = useNavigation();
 
   return (
@@ -19,24 +18,17 @@ const GuestHome = () => {
       <View style={styles.headerContainer}>
       <Header />
       </View>
+
+      <Pressable  onPress ={()=>goTo.GuestHome(nav)} style={styles.backContainer}>
+          <Ionicons name="arrow-back-circle" size={50} color="white" />
+          <Text style={styles.text}>{ `Back`}</Text>
+        </Pressable>
       <Text style={styles.text}>
-        {`Welcome! \nChoose your adventure below:`}
+        {`To sign up, choose your current weekly spot below:`}
       </Text>
-
-      <Pressable
-        onPress={() =>{ console.log('clicked!'); goTo.SelectSpot(nav)}}
-        style={styles.signInButton}>
-          <Text style={styles.signInButtonText}>New User Signup</Text>
-      </Pressable>
-
-      <Pressable
-        onPress={() =>{ console.log('clicked!'); goTo.SignIn(nav)}}
-        style={styles.signInButton}>
-          <Text style={styles.signInButtonText}>Existing User Sign In</Text>
-      </Pressable>
-
+      <Schedule type={'single'}/>
     </ScrollView>
-    // </ImageBackground>
+
   );
 };
 
@@ -64,7 +56,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 5,
     padding: 10,
-    width: '50%',
+    width: '25%',
     alignItems: 'center',
     marginBottom: 30,
   },
@@ -75,4 +67,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default GuestHome;
+export default SelectSpot;

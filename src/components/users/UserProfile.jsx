@@ -30,11 +30,6 @@ export default function UserProfile() {
     <View style={styles.container}>
       <ScrollView style={styles.scrollContainer}>
         <Header />
-        <View style={styles.signOutContainer}>
-          <Pressable style={styles.signOut}onPress={() => goTo.GuestHome(nav)}>
-            <Text style={styles.signOutText}>Sign Out</Text>
-          </Pressable>
-        </View>
 
           <Text style={styles.header}>Your Profile</Text>
           <Text style={styles.text}>Click on a value to edit it</Text>
@@ -45,7 +40,11 @@ export default function UserProfile() {
           <Text style={styles.text}>Communication Preference</Text>
           <Text style={styles.text}>Primary Contact</Text>
 
-
+          <View style={styles.signOutContainer}>
+          <Pressable style={styles.signOut}onPress={() => goTo.GuestHome(nav)}>
+            <Text style={styles.signOutText}>Sign Out</Text>
+          </Pressable>
+        </View>
 
 
         </ScrollView>

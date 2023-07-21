@@ -8,7 +8,10 @@ import { useNavigation } from '@react-navigation/native';
 import UserHomeInfoTable from './UserHomeInfoTable';
 
 
-export default function StudentResources() {
+export default function TeacherHome() {
+  // This should render a modified schedule view with student payment status added
+
+
   const [userSession, setUserSession] = useState(null);
   const nav = useNavigation();
 
@@ -29,16 +32,13 @@ export default function StudentResources() {
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scrollContainer}>
-        {/* <Header /> */}
+        <Header />
 
 
-          <Text style={styles.header}>Songs & Exercises</Text>
-          <Text style={styles.text}>{`Here's a song`}</Text>
-          <Text style={styles.text}>{`and another`}</Text>
-          <Text style={styles.text}>{`but not this`}</Text>
+          <Text style={styles.studentName}>Levi Sklar</Text>
 
 
-
+          <UserHomeInfoTable />
 
         </ScrollView>
         <Footer />
@@ -57,7 +57,6 @@ const styles = StyleSheet.create({
     fontFamily: 'economica',
     fontSize: 22,
     fontWeight: 'bold',
-    textAlign: 'center',
   },
   signOutContainer: {
     alignItems: 'flex-end',
@@ -69,7 +68,7 @@ const styles = StyleSheet.create({
     padding: 10,
 
   },
-  header: {
+  studentName: {
     color: 'white',
     fontFamily: 'economica',
     fontSize: 40,

@@ -14,16 +14,17 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "scheme": "string-school",
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.timdobranski.lamesastringschool",
-      "infoPlist": {
-        "CFBundleURLTypes": [
-          {
-            "CFBundleURLSchemes": ["com.googleusercontent.apps.17898xxxxxx-xxxxxqhqj0exxxxxpl03xxx"]
-          }
-        ]
-      }
+      "bundleIdentifier": "com.timdobranski.lamesastringschool"
+      // "infoPlist": {
+      //   "CFBundleURLTypes": [
+      //     {
+      //       "CFBundleURLSchemes": ["com.googleusercontent.apps.992856301413-eu0ms9q8tinebks8fmn7ggr0r1g698fl"]
+      //     }
+      //   ]
+      // }
 
     },
     "android": {

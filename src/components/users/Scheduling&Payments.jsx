@@ -30,11 +30,7 @@ export default function SchedulingAndPayments() {
     <View style={styles.container}>
       <ScrollView style={styles.scrollContainer}>
         <Header />
-        <View style={styles.signOutContainer}>
-          <Pressable style={styles.signOut}onPress={() => goTo.GuestHome(nav)}>
-            <Text style={styles.signOutText}>Sign Out</Text>
-          </Pressable>
-        </View>
+
 
           <Text style={styles.header}>Scheduling & Payments</Text>
 

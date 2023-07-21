@@ -16,6 +16,7 @@ import SchedulingAndPayments from './src/components/users/Scheduling&Payments';
 import PracticeAndProgress from './src/components/users/Practice&Progress';
 import StudentResources from './src/components/users/StudentResources';
 import UserProfile from './src/components/users/UserProfile';
+import SelectSpot from './src/components/guest/SelectSpot';
 // import CheckEmail from './src/components/guest/CheckEmail';
 
 
@@ -61,14 +62,16 @@ const navTheme = {
               }}
             >
               <Stack.Screen name="Guest Home" component={GuestHome} />
+              <Stack.Screen name="Select Spot" component={SelectSpot} />
               <Stack.Screen name="New User Signup" component={SignupNew} />
               <Stack.Screen name="Sign In" component={SignInView} />
+              {/* <Stack.Screen name="Check Email" component={CheckEmail} /> */}
+
               <Stack.Screen name="User Home" component={UserHome} />
               <Stack.Screen name="User Profile" component={UserProfile} />
               <Stack.Screen name="Student Resources" component={StudentResources} />
               <Stack.Screen name="Scheduling & Payments" component={SchedulingAndPayments} />
               <Stack.Screen name="Practice & Progress" component={PracticeAndProgress} />
-              {/* <Stack.Screen name="Check Email" component={CheckEmail} /> */}
             </Stack.Navigator>
           </NavigationContainer>
       </ImageBackground>

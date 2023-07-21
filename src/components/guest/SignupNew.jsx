@@ -1,37 +1,64 @@
 import SignUp from './SignUp';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
+import goTo from '../helpers/navigation';
+import { Button, Input } from '@rneui/themed'
 
 
 const SignupNew = () => {
-  const navigation = useNavigation();
+  const nav = useNavigation();
+  const [ text, setText] = useState('')
+  const [ disabled, setDisabled] = useState(true)
+  const studentName = 'Tim';
 
-  const goToGuestHome = () => navigation.navigate('Guest Home');
+  useEffect(() => {
+    if (text === studentName) {
+      setDisabled(false)
+    }
+  }, [text])
+
+  // useEffect(() => {
+  //   if (text === studentName) {
+  //     setDisabled(false)
+  //   }
+  // }, [text])
+
 
   return (
     <ScrollView
       contentContainerStyle={styles.scrollviewChildren}
       style={styles.container} >
 
-        <Pressable onPress={goToGuestHome} style={styles.backContainer}>
-          <Ionicons name="arrow-back-circle" size={50} color="white" />
-          <Text style={styles.text}>{ `To schedule`}</Text>
-        </Pressable>
+      <Pressable onPress={() => goTo.SelectSpot(nav)} style={styles.backContainer}>
+        <Ionicons name="arrow-back-circle" size={50} color="white" />
+        <Text style={styles.text}>{ `To schedule`}</Text>
+      </Pressable>
 
-        <View style={styles.spotContainer}>
-          <Text style={styles.spotText}>Monday, July 10th @ 7:00</Text>
-        </View>
+      <View style={styles.spotContainer}>
+        <Text style={styles.spotText}>Monday, July 10th @ 7:00</Text>
+      </View>
 
-        <Text style={styles.text}>{ `To book this spot for a free intro session, please fill in the fields below.\n
-This info is collected to allow for communication before your intro session, but once signed up you'll\
- also be able to access the rest of the app.`}
-        </Text>
+      {disabled === false ? <Text style={styles.header}>{`Student: ${studentName}`}</Text> :
+      <Text style={styles.text}>
+        { `To confirm that this is your spot, please enter the first name of the student below:`}
+      </Text>}
+      {disabled === false ?
+      null :
+      <Input
+          label="Student First Name"
+          labelStyle={styles.label}
+          onChangeText={(text) => setText(text)}
+          value={text}
+          placeholder="first name only"
+          autoCapitalize={'none'}
+          color='white'
+      />}
 
-         <SignUp />
+      {disabled === true ? null : <SignUp />}
 
-      </ScrollView>
+    </ScrollView>
   )
 };
 
@@ -79,6 +106,16 @@ const styles = StyleSheet.create({
   backContainer: {
     marginTop: 20,
     alignItems: 'center',
+  },
+  label: {
+    color: 'white',
+    fontFamily: 'economica',
+    fontSize: 22,
+  },
+  header: {
+    color: 'white',
+    fontFamily: 'economica',
+    fontSize: 35,
   }
 });
 

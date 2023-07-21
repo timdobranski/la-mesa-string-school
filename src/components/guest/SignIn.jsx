@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { Platform } from 'react-native';
-import axios from 'axios';
 import { Alert, StyleSheet, View, Text } from 'react-native';
 import  supabase  from '../../../supabase';
 import { Button, Input } from '@rneui/themed';
 import goTo from '../helpers/navigation';
 import { useNavigation } from '@react-navigation/native';
-import jwt_decode from 'jwt-decode';
-import { GOOGLE_IOS_CLIENT_ID, GOOGLE_WEB_CLIENT_ID, SUPABASE_API_KEY } from '@env';
+import { GOOGLE_IOS_CLIENT_ID, GOOGLE_WEB_CLIENT_ID } from '@env';
 import { Linking } from 'react-native';
+import * as WebBrowser from 'expo-web-browser';
 import {GoogleSignin, GoogleSigninButton, statusCodes,
 } from '@react-native-google-signin/google-signin';
+// import jwt_decode from 'jwt-decode';
+// import { Platform } from 'react-native';
+// import axios from 'axios';
 
 
 export default function SignIn() {
@@ -18,66 +19,69 @@ export default function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [userSession, setUserSession] = useState(null);
 
+  const iOSclientId = GOOGLE_IOS_CLIENT_ID;
+  const webClientId = GOOGLE_WEB_CLIENT_ID;
 
-  const clientId = GOOGLE_IOS_CLIENT_ID;
-
-  // sign in manually with email and password
-  async function signInWithEmail() {
-    setLoading(true)
-    const { error } = await supabase.auth.signInWithPassword({
-      email: email,
-      password: password,
-    })
-
-    if (error) {
-      Alert.alert(error.message)
-    } else {
-      goTo.UserHome(nav);
-    }
-    setLoading(false)
-  }
-  // native google signin
-  async function signInWithGoogle() {
-    GoogleSignin.configure({
-      iosClientId: clientId,
-      webClientId: GOOGLE_WEB_CLIENT_ID,
-      offlineAccess: true,
-    });
+  async function handleSupabaseSignIn(user) {
     try {
-      const userInfo = await GoogleSignin.signIn();
-      // supabase stuff
-      const supabaseSigninOptions = {
-        provider: 'google',
-        token: userInfo.idToken,
-      };
-      const { error, response } = await supabase.auth.signInWithIdToken({
-        provider: 'google',
-        idToken: userInfo.idToken,
-      });
-      console.log('response from supabase: ', response);
-      // logs [AuthApiError: Passed nonce and nonce in id_token should either both exist or not. ]
-      console.log('error from supabase: ', error);
+
+        // sign in with Supabase
+        const { data, error } = await supabase.auth.signInWithPassword({
+          email: user.email,
+          password: user.id, // Use the "id" as the password for signing in
+        });
+
+        if (error) {
+          console.error('Error signing in with Supabase: ', error.message);
+        }
+        console.log('Signed in user: ', JSON.stringify(data));
+        return data;
+
     } catch (error) {
-      console.log('error: ', error);
+      console.error('Error handling Supabase sign-in:', error.message);
+
+    }
   }
+
+
+// sign in manually with email and password
+async function signInWithEmail() {
+  setLoading(true)
+  const { error } = await supabase.auth.signInWithPassword({
+    email: email,
+    password: password,
+  })
+
+  if (error) {
+    Alert.alert(error.message)
+  } else {
+    goTo.UserHome(nav);
+  }
+  setLoading(false)
+}
+// native google signin
+async function signInWithGoogle() {
+  GoogleSignin.configure({
+    iosClientId: iOSclientId,
+    webClientId: webClientId,
+    offlineAccess: true,
+  });
+  try {
+    const userInfo = await GoogleSignin.signIn();
+    console.log('google response: ', userInfo);
+
+    await handleSupabaseSignIn(userInfo.user)
+
+
+
+
+  } catch (error) {
+    console.log('catch error: ', error);
+}
 }
 
-  // Uses web flow and async/await
-  async function googleSignin2() {
-    // get the url
-    const { data, error } = await supabase.auth.signInWithOAuth({provider: 'google'});
-
-    if (error) { console.error('Error signing in:', error);
-      return;
-    }
-
-    if (data) {
-      // data contains
-      console.log('signInWithOAuth response: ', data)
-      await Linking.openURL(data.url);
-    }
-  }
 
 
       // signout
@@ -101,15 +105,12 @@ export default function SignIn() {
         })
       }
 
-
-
       // signInWithGoogle options:
       // webClientId: GOOGLE_WEB_CLIENT_ID, // client ID of type WEB for your server (needed to verify user ID and offline access)
       // offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
       // hostedDomain: '', // specifies a hosted domain restriction
       // openIdRealm: 'http://lamesastringschool.com', // [iOS] The OpenID2 realm of the home web server. This allows Google to include the user's OpenID Identifier in the OpenID Connect ID token.
       // profileImageSize: 120, // [iOS] The desired height (and width) of the profile image. Defaults to 120px
-
 
       return (
         <View style={styles.container}>
@@ -139,13 +140,14 @@ export default function SignIn() {
           />
       <View style={[styles.verticallySpaced, styles.centered]}>
         <Button title="Sign in" disabled={loading} onPress={() => signInWithEmail()} />
-        <Text style={styles.or}>Or, sign in with Google: </Text>
+        {/* <Text style={styles.or}>Or, sign in with Google: </Text> */}
         <GoogleSigninButton
         size={GoogleSigninButton.Size.Wide}
         onPress={signInWithGoogle}
         />
-        <Button title="Google signin 2" onPress={googleSignin2} />
-        <Button title="Home" onPress={() => {goTo.UserHome(nav)}} />
+                <Text style={styles.or}>Skip sign in and explore the app: </Text>
+        {/* <Button title="Google signin 2" onPress={googleSignin2} /> */}
+        <Button title="Explore App" onPress={() => {goTo.UserHome(nav)}} />
 
       </View>
       </View>
@@ -182,23 +184,3 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
 })
-
-// manual post request to supabase (failed 400)
-
-// const url = 'https://fwurwvajaafiyttyvpyt.supabase.co/auth/v1/token?grant_type=id_token';
-// const data = {
-//   id_token: userInfo.idToken,
-//   provider: 'google'
-// }
-// const headers = {
-//   'Content-Type': 'application/json',
-//   'apiKey': SUPABASE_API_KEY,
-// };
-// const response = await axios.post(url, data, { headers });
-// console.log('response from axios: ', response);
-
-// } catch (error) {
-// console.log(error);
-// // Handle error
-// }
-// }

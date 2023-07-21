@@ -52,10 +52,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',
-    backgroundColor: 'rgba(0, 0, 0, 1)',
+    backgroundColor: 'rgba(0, 0, 0, .8)',
     width: '100%',
     borderTopWidth: 1, // Use borderTopWidth instead of border
-    borderTopColor: 'white', // Use borderTopColor instead of borderColor
+    borderTopColor: '#666666', // Use borderTopColor instead of borderColor
     position: 'absolute', // Position the footer absolutely
     bottom: 0, // Align the footer to the bottom
   },

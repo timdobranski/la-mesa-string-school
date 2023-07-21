@@ -4,27 +4,29 @@ import styles from './scheduleStyling.js';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 
-export default function Schedule () {
+export default function Schedule ({ type }) {
   const navigation = useNavigation();
 
   const navigateToSignupNew = () => {
     navigation.navigate('New User Signup');
   };
 
+  const dateRange = (type === 'single') ? null :       <View style={styles.nav}>
+  <Pressable style={styles.navLeft}>
+    <Ionicons name="arrow-back-circle" size={50} color="white" />
+  </Pressable>
+
+<Text style={[styles.navCenter]}>July 10th - July 17th</Text>
+
+<Pressable style={styles.navRight}>
+<Ionicons name="arrow-forward-circle" size={50} color="white" />
+</Pressable>
+</View>
+
   return (
     // <ScrollView style={styles.scrollView}>
       <View style={styles.contentContainer}>
-        <View style={styles.nav}>
-          <Pressable style={styles.navLeft}>
-            <Ionicons name="arrow-back-circle" size={50} color="white" />
-          </Pressable>
-
-        <Text style={[styles.navCenter]}>July 10th - July 17th</Text>
-
-        <Pressable style={styles.navRight}>
-        <Ionicons name="arrow-forward-circle" size={50} color="white" />
-        </Pressable>
-        </View>
+      {dateRange}
 
       <Pressable style={[styles.monHeader, styles.dateHeaders]}>
         <Text style={styles.headerText}>Monday, July 10th</Text>

@@ -31,6 +31,10 @@ const goTo = {
     console.log('Going to User Profile');
     navigation.navigate('User Profile');
   },
-};
+  SelectSpot: (navigation) => {
+    console.log('Going to Select Spot');
+    navigation.navigate('Select Spot');
+  },
+  };
 
 export default goTo;
