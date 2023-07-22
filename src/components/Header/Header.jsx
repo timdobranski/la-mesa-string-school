@@ -22,9 +22,10 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     paddingBottom: 5,
     marginBottom: 15,
-    backgroundColor: 'black',
-    borderWidth: 5,
-    borderColor: 'white',
+    backgroundColor: 'rgba(0, 0, 0, .5)',
+
+    borderBottomWidth: 1,
+    borderColor: '#666666',
     borderRadius: 5,
     // height: '13%'
 

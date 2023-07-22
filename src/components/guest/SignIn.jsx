@@ -37,6 +37,8 @@ export default function SignIn() {
           console.error('Error signing in with Supabase: ', error.message);
         }
         console.log('Signed in user: ', JSON.stringify(data));
+        const { user: sessionUser } = data;
+        console.log()
         return data;
 
     } catch (error) {

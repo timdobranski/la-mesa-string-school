@@ -19,7 +19,7 @@ const GuestHome = () => {
       <View style={styles.headerContainer}>
       <Header />
       </View>
-      <Text style={styles.text}>
+      <Text style={styles.headerText}>
         {`Welcome! \nChoose your adventure below:`}
       </Text>
 
@@ -52,6 +52,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     textAlign: 'center',
   },
+  headerText: {
+    fontSize: 35,
+    color: 'white',
+    fontFamily: 'economica',
+    marginTop: 30,
+    marginBottom: 50,
+    textAlign: 'center',
+    marginHorizontal: 20,
+  },
   text: {
     color: 'white',
     fontSize: 22,
@@ -66,7 +75,7 @@ const styles = StyleSheet.create({
     padding: 10,
     width: '50%',
     alignItems: 'center',
-    marginBottom: 30,
+    marginBottom: 50,
   },
   signInButtonText: {
     fontFamily: 'economica',

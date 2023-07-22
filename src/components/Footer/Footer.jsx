@@ -3,8 +3,11 @@ import { View, Text, StyleSheet, Pressable } from 'react-native';
 import { FontAwesome, AntDesign, MaterialIcons, Ionicons } from '@expo/vector-icons';
 import goTo from '../helpers/navigation';
 import { useNavigation } from '@react-navigation/native';
+import supabase from '../../../supabase';
 
 export default function Footer() {
+
+  console.log('session in footer: ', supabase.auth.session);
   const nav = useNavigation();
   return (
     <View style={styles.footerContainer}>
@@ -40,6 +43,8 @@ export default function Footer() {
       <Pressable
         style={styles.iconContainer}
         onPress={() => {goTo.UserProfile(nav)}}>
+
+
         <FontAwesome name="user-circle" style={styles.icons} />
         <Text style={styles.text}>Profile</Text>
         </Pressable>

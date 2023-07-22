@@ -8,7 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 
 
 
-export default function UserHomeInfoTable() {
+export default function ProfileCard() {
 
 
   return (
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     borderWidth: 8,
     borderRadius: 5,
     marginBottom: 10,
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    backgroundColor: 'rgba(0,0,0,0.7)',
     marginHorizontal: 20,
     padding: 10,
   },

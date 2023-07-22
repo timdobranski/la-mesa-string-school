@@ -5,7 +5,7 @@ import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import goTo from '../helpers/navigation';
 import { useNavigation } from '@react-navigation/native';
-import UserHomeInfoTable from './UserHomeInfoTable';
+import SchedulingCard from './SchedulingCard';
 
 
 export default function SchedulingAndPayments() {
@@ -19,7 +19,7 @@ export default function SchedulingAndPayments() {
       setUserSession(data.session)
     }
     if (error) {console.log('Error in getSession; navigating to Guest Home: ', error);
-      goTo.GuestHome(nav);}
+      }
   }
 
     useEffect(() => {

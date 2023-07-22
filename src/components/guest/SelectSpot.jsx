@@ -20,7 +20,7 @@ const SelectSpot = () => {
       </View>
 
       <Pressable  onPress ={()=>goTo.GuestHome(nav)} style={styles.backContainer}>
-          <Ionicons name="arrow-back-circle" size={50} color="white" />
+          <Ionicons name="arrow-back-circle" size={50} color="white" style={styles.backButton} />
           <Text style={styles.text}>{ `Back`}</Text>
         </Pressable>
       <Text style={styles.text}>
@@ -64,7 +64,11 @@ const styles = StyleSheet.create({
     fontFamily: 'economica',
     fontSize: 20,
 
-  }
+  },
+  backButton: {
+    marginBottom: 10,
+    textAlign: 'center',
+  },
 });
 
 export default SelectSpot;

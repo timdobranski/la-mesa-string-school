@@ -19,12 +19,6 @@ const SignupNew = () => {
     }
   }, [text])
 
-  // useEffect(() => {
-  //   if (text === studentName) {
-  //     setDisabled(false)
-  //   }
-  // }, [text])
-
 
   return (
     <ScrollView

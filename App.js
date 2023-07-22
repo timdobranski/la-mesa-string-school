@@ -45,7 +45,7 @@ const navTheme = {
   return (
     <SafeAreaView style={styles.container}>
       <ImageBackground
-        source={require('./assets/images/backgroundVerticalDimmer.jpg')}
+        source={require('./assets/images/backgroundVerticalDim.jpg')}
         style={styles.backgroundImage}
         resizeMode='cover'
       >
