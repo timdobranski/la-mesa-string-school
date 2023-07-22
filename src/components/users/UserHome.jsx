@@ -7,6 +7,7 @@ import goTo from '../helpers/navigation';
 import { useNavigation } from '@react-navigation/native';
 import SchedulingCard from './SchedulingCard';
 import PaymentsCard from './PaymentsCard';
+import ProfileCard from './ProfileCard';
 
 
 export default function UserHome() {
@@ -33,14 +34,15 @@ export default function UserHome() {
         <Header />
 
 
-          <Text style={styles.studentName}>Levi Sklar</Text>
+          <Text style={styles.studentName}>Jimi Hendrix</Text>
 
 
           <SchedulingCard />
           <PaymentsCard />
-
+          <ProfileCard />
         </ScrollView>
         <Footer />
+
         </View>
 
   );

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Pressable } from 'react-native';
 import { FontAwesome, AntDesign, MaterialIcons, Ionicons } from '@expo/vector-icons';
 import goTo from '../helpers/navigation';
@@ -6,6 +6,8 @@ import { useNavigation } from '@react-navigation/native';
 import supabase from '../../../supabase';
 
 export default function Footer() {
+  const [ session, setSession ] = useState(null);
+
 
   console.log('session in footer: ', supabase.auth.session);
   const nav = useNavigation();
@@ -22,8 +24,8 @@ export default function Footer() {
       <Pressable
       style={styles.iconContainer}
       onPress={() => {goTo.SchedulingAndPayments(nav)}}>
-        <AntDesign name="calendar" style={styles.icons} />
-        <Text style={styles.text}>{'Scheduling'}</Text>
+        <Ionicons name="timer" style={styles.icons} />
+        <Text style={styles.text}>{'Practice'}</Text>
       </Pressable>
 
       <Pressable

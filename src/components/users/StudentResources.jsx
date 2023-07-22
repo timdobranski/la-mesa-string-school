@@ -5,6 +5,9 @@ import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import goTo from '../helpers/navigation';
 import { useNavigation } from '@react-navigation/native';
+import SongsCard from './SongsCard';
+import ExercisesCard from './ExercisesCard';
+import MoreResourcesCard from './MoreResourcesCard';
 
 
 
@@ -31,14 +34,9 @@ export default function StudentResources() {
       <ScrollView style={styles.scrollContainer}>
         <Header />
 
-
-          <Text style={styles.header}>Songs & Exercises</Text>
-          <Text style={styles.text}>{`Here's a song`}</Text>
-          <Text style={styles.text}>{`and another`}</Text>
-          <Text style={styles.text}>{`but not this`}</Text>
-
-
-
+        <SongsCard />
+        <ExercisesCard />
+        <MoreResourcesCard />
 
         </ScrollView>
         <Footer />

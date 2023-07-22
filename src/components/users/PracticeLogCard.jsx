@@ -9,46 +9,23 @@ import { Picker } from '@react-native-picker/picker';
 
 
 
-export default function SchedulingCard() {
+export default function SongsCard() {
   const [showUpcomingLessons, setShowUpcomingLessons] = useState(false);
-  const fakeSchedule = [{
-    date: '7/21/23',
-    time: '4:00pm',
-  },
-  {
-    date: '7/28/23',
-    time: '4:00pm',
-  },
-  {
-    date: '8/4/23',
-    time: '4:00pm',
-  }]
 
   return (
     <View style={styles.container}>
-      <Text style={styles.headerText}>Scheduling</Text>
-      <Text style={styles.text}>Makeups Available: 2</Text>
-      <Text style={styles.comment}>Makeups are added when you cancel before 2pm</Text>
-      <Text style={styles.comment}>Limit of 4 max</Text>
+      <Text style={styles.headerText}>{'This Week\'s Practice'}</Text>
 
-      <Text style={styles.text}>Move A Lesson</Text>
-      <Text style={styles.comment}>Cancel and reschedule now</Text>
+      <Text style={styles.text}>1 hour, 20 minutes</Text>
+      <Text style={styles.comment}>Tues: 20 mins</Text>
+      <Text style={styles.comment}>Wed: 20 mins</Text>
+      <Text style={styles.comment}>Fri: 20 mins</Text>
+      <Text style={styles.comment}>Sun: 20 mins</Text>
 
-      <Text style={styles.text}>Cancel A Lesson</Text>
-      <Text style={styles.comment}>Cancel now and reschedule later</Text>
+      <Text style={styles.text}>Goal:</Text>
+      <Text style={styles.comment}>2 Hours</Text>
 
-      <Text style={styles.text}>Scheduling A Makeup</Text>
-      <Text style={styles.comment}>Use a makeup credit</Text>
 
-      <Text style={styles.text}>Move Spots</Text>
-      <Text style={styles.comment}>Change to a different recurring weekly spot</Text>
-
-      <Pressable onPress={() => setShowUpcomingLessons(!showUpcomingLessons)}>
-      <Text style={styles.label}>{showUpcomingLessons ? 'Hide' : 'Show'} Upcoming Lessons</Text>
-      </Pressable>
-      {showUpcomingLessons ? fakeSchedule.map((lesson, index) => {
-        return <Text style={styles.text} key={index}>{lesson.date} @ {lesson.time}</Text>
-      }) : null}
 
 
     </View>

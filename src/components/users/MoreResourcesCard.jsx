@@ -8,30 +8,23 @@ import { useNavigation } from '@react-navigation/native';
 
 
 
-export default function ProfileCard() {
+export default function MoreResourcesCard() {
 
 
   return (
     <View style={styles.container}>
-      <Text style={styles.headerText}>Your Profile</Text>
+      <Text style={styles.headerText}>More Resources</Text>
 
-      <Text style={styles.label}>Student Name</Text>
-      <Text style={styles.comment}>Jimi Hendrix</Text>
+      <Text style={styles.label}>Getting Started</Text>
+      <Text style={styles.comment}>tuning, using guitar pro, reading the pages</Text>
 
-      <Text style={styles.label}>User Name</Text>
-      <Text style={styles.comment}>Joe Hendrix</Text>
 
-      <Text style={styles.label}>User Email</Text>
-      <Text style={styles.comment}>jimisdad@gmail.com</Text>
+      <Text style={styles.label}>My Book</Text>
+      <Text style={styles.comment}>The String School Guitar Method</Text>
 
-      <Text style={styles.label}>User Phone</Text>
-      <Text style={styles.comment}>619-123-4567</Text>
+      <Text style={styles.label}>Great Youtube Videos</Text>
+      <Text style={styles.comment}>Signals Music Studio</Text>
 
-      <Text style={styles.label}>Preferred Communication Method</Text>
-      <Text style={styles.comment}>Text</Text>
-
-      <Text style={styles.label}>Primary Contact for Levi:</Text>
-      <Text style={styles.comment}>Amanda</Text>
     </View>
 
   );
@@ -74,7 +67,6 @@ comment: {
   color: '#cccccc',
   fontStyle: 'italic',
   textAlign: 'center',
-  fontSize: 16
 
 }
 

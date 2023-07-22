@@ -6,9 +6,11 @@ import Header from '../Header/Header';
 import goTo from '../helpers/navigation';
 import { useNavigation } from '@react-navigation/native';
 import SchedulingCard from './SchedulingCard';
+import PracticeLogCard from './PracticeLogCard';
+import LogPracticeCard from './LogPracticeCard';
 
 
-export default function SchedulingAndPayments() {
+export default function Practice() {
   const [userSession, setUserSession] = useState(null);
   const nav = useNavigation();
 
@@ -31,19 +33,8 @@ export default function SchedulingAndPayments() {
       <ScrollView style={styles.scrollContainer}>
         <Header />
 
-
-          <Text style={styles.header}>Scheduling & Payments</Text>
-
-          <Text style={styles.text}>Move A Lesson</Text>
-          <Text style={styles.comment}>Cancel and reschedule now</Text>
-
-          <Text style={styles.text}>Cancel A Lesson</Text>
-          <Text style={styles.comment}>Cancel now and reschedule later</Text>
-
-          <Text style={styles.text}>Scheduling A Makeup</Text>
-          <Text style={styles.comment}>Use a makeup credit</Text>
-
-
+      <PracticeLogCard />
+      <LogPracticeCard />
 
 
         </ScrollView>

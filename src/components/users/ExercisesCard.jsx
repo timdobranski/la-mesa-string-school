@@ -8,39 +8,22 @@ import { useNavigation } from '@react-navigation/native';
 
 
 
-export default function PaymentsCard() {
+export default function ExercisesCard() {
 
 
   return (
     <View style={styles.container}>
-      <Text style={styles.headerText}>Payments</Text>
+      <Text style={styles.headerText}>Exercises</Text>
 
-      <View style={styles.paymentInfoContainer}>
-      <View style={styles.tableRow}>
-        <View style={styles.labelCell}>
-          <Text style={styles.labelText}>Total Due</Text>
-        </View>
-        <View style={styles.labelCell}>
-          <Text style={styles.labelText}>Due Date</Text>
-        </View>
-      </View>
 
-      <View style={styles.tableRow}>
-        <View style={styles.textCell}>
-          <Text style={styles.text}>$110</Text>
-        </View>
-        <View style={styles.textCell}>
-          <Text style={styles.text}>July 7th</Text>
-        </View>
-      </View>
-    </View>
+      <Text style={styles.label}>Exercise Search</Text>
+      <Text style={styles.comment}>Search by topic: scales, chords, strumming, pentatonic, etc</Text>
 
-      <Text style={styles.label}>View Payment History</Text>
-      <Text style={styles.comment}>Payments via Venmo & Paypal will appear here</Text>
-      <Text style={styles.comment}>*May take up to 24 hours*</Text>
 
-      <Text style={styles.label}>Manually Log A Payment</Text>
-      <Text style={styles.comment}>Log payments via cash/check here</Text>
+      <Text style={styles.label}>Recent Exercises</Text>
+      <Text style={styles.comment}>Pentatonic scale forms</Text>
+      <Text style={styles.comment}>Diatonic scale forms</Text>
+      <Text style={styles.comment}>CAGED Chords</Text>
 
       <Text style={styles.comment}></Text>
     </View>
@@ -75,7 +58,7 @@ const styles = StyleSheet.create({
     },
     label: {
       textAlign: 'center',
-      color: 'white',
+      color: '#2fc02d',
       fontFamily: 'economica',
       fontWeight: 'bold',
       fontSize: 24,
