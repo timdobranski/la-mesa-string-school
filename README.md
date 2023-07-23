@@ -12,4 +12,6 @@ Currently (7/22/23) the app is in a skeleton form with only authentication featu
 Demo of current state (7/22/23):
 <iframe width="560" height="315" src="https://www.youtube.com/watch?v=XGPN6fIwT2A" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-[![Alt text](/assets/images/lmss-logo.png)](https://www.youtube.com/watch?v=XGPN6fIwT2A)
+<div style="width: 400px; background-color: black;">
+  [![Alt text](/assets/images/lmss-logo.png)](https://www.youtube.com/watch?v=XGPN6fIwT2A)
+</div>
