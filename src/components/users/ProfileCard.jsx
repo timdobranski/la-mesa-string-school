@@ -1,15 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import supabase from '../../../supabase';
-import { StyleSheet, View, Alert, Text, ImageBackground, Pressable } from 'react-native';
-import Footer from '../Footer/Footer';
-import Header from '../Header/Header';
-import goTo from '../helpers/navigation';
-import { useNavigation } from '@react-navigation/native';
-
-
+import React from 'react';
+import { StyleSheet, View, Text } from 'react-native';
 
 export default function ProfileCard() {
-
 
   return (
     <View style={styles.container}>
@@ -33,10 +25,8 @@ export default function ProfileCard() {
       <Text style={styles.label}>Primary Contact for Levi:</Text>
       <Text style={styles.comment}>Amanda</Text>
     </View>
-
   );
 }
-
 
 const styles = StyleSheet.create({
   container: {

@@ -1,16 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import supabase from '../../../supabase';
-import { StyleSheet, View, Alert, Text, Pressable } from 'react-native';
-import Footer from '../Footer/Footer';
-import Header from '../Header/Header';
-import goTo from '../helpers/navigation';
-import { useNavigation } from '@react-navigation/native';
-import { Picker } from '@react-native-picker/picker';
+import React from 'react';
 
-
+import { StyleSheet, View, Text } from 'react-native';
 
 export default function SongsCard() {
-  const [showUpcomingLessons, setShowUpcomingLessons] = useState(false);
 
   return (
     <View style={styles.container}>
@@ -25,14 +17,9 @@ export default function SongsCard() {
       <Text style={styles.text}>Goal:</Text>
       <Text style={styles.comment}>2 Hours</Text>
 
-
-
-
     </View>
-
   );
 }
-
 
 const styles = StyleSheet.create({
   container: {

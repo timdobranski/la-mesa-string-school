@@ -1,23 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import supabase from '../../../supabase';
-import { StyleSheet, View, Alert, Text, ImageBackground, Pressable } from 'react-native';
-import Footer from '../Footer/Footer';
-import Header from '../Header/Header';
-import goTo from '../helpers/navigation';
-import { useNavigation } from '@react-navigation/native';
-
-
+import React from 'react';
+import { StyleSheet, View, Text } from 'react-native';
+import BorderGradient from './BorderGradient';
 
 export default function MoreResourcesCard() {
 
-
   return (
     <View style={styles.container}>
+      <BorderGradient
+      color2='#ffb62b'
+      color3='#f5de84'
+      color1='#ff7b00'
+      />
+
       <Text style={styles.headerText}>More Resources</Text>
 
       <Text style={styles.label}>Getting Started</Text>
       <Text style={styles.comment}>tuning, using guitar pro, reading the pages</Text>
-
 
       <Text style={styles.label}>My Book</Text>
       <Text style={styles.comment}>The String School Guitar Method</Text>
@@ -26,21 +24,17 @@ export default function MoreResourcesCard() {
       <Text style={styles.comment}>Signals Music Studio</Text>
 
     </View>
-
   );
 }
-
 
 const styles = StyleSheet.create({
   container: {
     marginTop: 15,
-    borderColor: '#ffb62b',
-    borderWidth: 8,
-    borderRadius: 5,
+    borderRadius: 8,
     marginBottom: 100,
     backgroundColor: 'rgba(0,0,0,0.7)',
     marginHorizontal: 20,
-    padding: 10,
+    padding: 20,
   },
   label: {
     textAlign: 'center',

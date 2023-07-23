@@ -5,7 +5,7 @@ import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import goTo from '../helpers/navigation';
 import { useNavigation } from '@react-navigation/native';
-import { Picker } from '@react-native-picker/picker';
+import BorderGradient from './BorderGradient';
 
 
 
@@ -14,6 +14,12 @@ export default function SongsCard() {
 
   return (
     <View style={styles.container}>
+      <BorderGradient
+      color1='#177d9c'
+      color2='#16d2f7'
+      // color3='#116078'
+      />
+
       <Text style={styles.headerText}>Songs</Text>
 
       <Text style={styles.text}>Song Search</Text>
@@ -39,9 +45,9 @@ export default function SongsCard() {
 
 const styles = StyleSheet.create({
   container: {
-    borderColor: '#05a7d7',
-    borderWidth: 8,
-    borderRadius: 5,
+    // borderColor: '#05a7d7',
+    // borderWidth: 8,
+    borderRadius: 8,
     marginBottom: 15,
     marginTop: 15,
     backgroundColor: 'rgba(0,0,0,0.7)',

@@ -1,15 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import supabase from '../../../supabase';
-import { StyleSheet, View, Alert, Text, ImageBackground, Pressable } from 'react-native';
-import Footer from '../Footer/Footer';
-import Header from '../Header/Header';
-import goTo from '../helpers/navigation';
-import { useNavigation } from '@react-navigation/native';
-
+import React from 'react';
+import { StyleSheet, View,  Text} from 'react-native';
 
 
 export default function PaymentsCard() {
-
 
   return (
     <View style={styles.container}>
@@ -58,6 +51,7 @@ const styles = StyleSheet.create({
       backgroundColor: 'rgba(0,0,0,0.7)',
       marginHorizontal: 20,
       padding: 10,
+      borderImage: 'linearGradient(to right, #11998e, #38ef7d)',
     },
     paymentInfoContainer: {
       flex: 1,

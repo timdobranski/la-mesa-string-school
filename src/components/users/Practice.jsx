@@ -1,18 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import supabase from '../../../supabase';
-import { StyleSheet, View, Alert, Text, ImageBackground, Pressable, ScrollView } from 'react-native';
+import { StyleSheet, View, ScrollView } from 'react-native';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
-import goTo from '../helpers/navigation';
-import { useNavigation } from '@react-navigation/native';
-import SchedulingCard from './SchedulingCard';
+
 import PracticeLogCard from './PracticeLogCard';
 import LogPracticeCard from './LogPracticeCard';
 
 
 export default function Practice() {
   const [userSession, setUserSession] = useState(null);
-  const nav = useNavigation();
 
   async function getAndSetSession ()  {
     const { data, error } = await supabase.auth.getSession()
@@ -28,6 +25,7 @@ export default function Practice() {
       getAndSetSession();
     }, [])
 
+    console.log('userSession: ', userSession);
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scrollContainer}>

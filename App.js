@@ -13,7 +13,7 @@ import UserHome from './src/components/users/UserHome';
 import SignupNew from './src/components/guest/SignupNew';
 import SignInView from './src/components/guest/SignInView';
 import Practice from './src/components/users/Practice';
-import PracticeAndProgress from './src/components/users/Practice&Progress';
+import Progress from './src/components/users/Progress';
 import StudentResources from './src/components/users/StudentResources';
 import UserProfile from './src/components/users/UserProfile';
 import SelectSpot from './src/components/guest/SelectSpot';
@@ -71,7 +71,7 @@ const navTheme = {
               <Stack.Screen name="User Profile" component={UserProfile} />
               <Stack.Screen name="Student Resources" component={StudentResources} />
               <Stack.Screen name="Scheduling & Payments" component={Practice} />
-              <Stack.Screen name="Practice & Progress" component={PracticeAndProgress} />
+              <Stack.Screen name="Practice & Progress" component={Progress} />
             </Stack.Navigator>
           </NavigationContainer>
       </ImageBackground>
