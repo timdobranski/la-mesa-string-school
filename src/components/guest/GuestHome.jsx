@@ -20,7 +20,7 @@ const GuestHome = () => {
       <Header />
       </View>
       <Text style={styles.headerText}>
-        {`Welcome! \nChoose your adventure below:`}
+        {`Welcome! \nChoose your adventure:`}
       </Text>
 
       <Pressable

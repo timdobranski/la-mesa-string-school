@@ -66,8 +66,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   signOutContainer: {
-    alignItems: 'flex-end',
-    padding: 10,
+    alignItems: 'center',
+    padding: 30,
   },
   signOut: {
     backgroundColor: 'white',

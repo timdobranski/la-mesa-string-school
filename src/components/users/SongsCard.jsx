@@ -17,7 +17,7 @@ export default function SongsCard() {
       <BorderGradient
       color1='#177d9c'
       color2='#16d2f7'
-      // color3='#116078'
+      color3='#116078'
       />
 
       <Text style={styles.headerText}>Songs</Text>
@@ -52,7 +52,8 @@ const styles = StyleSheet.create({
     marginTop: 15,
     backgroundColor: 'rgba(0,0,0,0.7)',
     marginHorizontal: 20,
-    padding: 10,
+    paddingTop: 10,
+    paddingBottom: 20,
   },
   headerText: {
     textAlign: 'center',

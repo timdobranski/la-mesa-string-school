@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Pressable } from 'react-native';
+import { View, Text, StyleSheet, Pressable, Image } from 'react-native';
 import { FontAwesome, AntDesign, MaterialIcons, Ionicons } from '@expo/vector-icons';
 import goTo from '../helpers/navigation';
 import { useNavigation } from '@react-navigation/native';
@@ -46,9 +46,11 @@ export default function Footer() {
         style={styles.iconContainer}
         onPress={() => {goTo.UserProfile(nav)}}>
 
-
-        <FontAwesome name="user-circle" style={styles.icons} />
-        <Text style={styles.text}>Profile</Text>
+        <Image
+          source={{uri: `https://lh3.googleusercontent.com/a/AAcHTtcMIAsQe10lqit0R1nLYYFoqQ-LDbEAj5D7Fdlzj1cAy4Q=s120`}}
+          style={{height:50, width:50, borderRadius: 75, borderColor: '#2fc02d', borderWidth: 3}} />
+        {/* <FontAwesome name="user-circle" style={styles.icons} /> */}
+        {/* <Text style={styles.text}>Profile</Text> */}
         </Pressable>
     </View>
   );

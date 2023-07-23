@@ -140,11 +140,11 @@ async function signInWithGoogle() {
           autoCapitalize={'none'}
           color='white'
           />
-      <View style={[styles.verticallySpaced, styles.centered]}>
-        <Button title="Sign in" disabled={loading} onPress={() => signInWithEmail()} />
+      <View style={[styles.verticallySpaced, styles.centered, ]}>
+        <Button title="Sign in" disabled={loading} onPress={() => signInWithEmail()} style={styles.signInButton} />
         {/* <Text style={styles.or}>Or, sign in with Google: </Text> */}
         <GoogleSigninButton
-        size={GoogleSigninButton.Size.Wide}
+        size={GoogleSigninButton.Size.Narrow}
         onPress={signInWithGoogle}
         />
                 <Text style={styles.or}>Skip sign in and explore the app: </Text>
@@ -162,6 +162,7 @@ const styles = StyleSheet.create({
     marginTop: 40,
     padding: 12,
     width: '100%',
+    alignItems: 'center',
   },
   verticallySpaced: {
     paddingTop: 4,
@@ -185,4 +186,8 @@ const styles = StyleSheet.create({
   centered: {
     alignItems: 'center'
   },
+  signInButton: {
+    width: '100%',
+    color: 'white',
+  }
 })
