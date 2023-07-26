@@ -59,12 +59,12 @@ const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: 'black',
     alignItems: 'center',
-    borderWidth: 10,
-    borderStyle: 'solid',
+    // borderWidth: 10,
+    // borderStyle: 'solid',
     borderRadius: 3,
     marginTop: 20,
     marginBottom: 0,
-    paddingVertical: 8,
+    paddingVertical: 18,
   },
   headerText:{
     fontFamily: 'economica',
@@ -98,6 +98,9 @@ const styles = StyleSheet.create({
     borderColor: '#147095',
   },
   monBooked:{
+    backgroundColor: '#147095',
+
+
   },
   monOpen:{
     backgroundColor: '#9fc5e8',
@@ -106,6 +109,7 @@ const styles = StyleSheet.create({
     borderColor: '#2fc02d',
   },
   tuesBooked:{
+    backgroundColor: '#2fc02d'
   },
   tuesOpen:{
     backgroundColor: '#b1fcb0'
@@ -114,6 +118,7 @@ const styles = StyleSheet.create({
     borderColor: '#ff2d2b',
   },
   wedBooked:{
+    backgroundColor: '#ff2d2b'
   },
   wedOpen:{
     backgroundColor: '#ea9999'
@@ -122,6 +127,7 @@ const styles = StyleSheet.create({
     borderColor: '#ffb62b',
   },
   thursBooked:{
+    backgroundColor: '#ffb62b'
   },
   thursOpen:{
     backgroundColor: '#fff2cc'
@@ -130,6 +136,7 @@ const styles = StyleSheet.create({
     borderColor: '#a64d79',
   },
   sunBooked:{
+    backgroundColor: '#a64d79'
   },
   sunOpen:{
     backgroundColor: '#d5a6bd'

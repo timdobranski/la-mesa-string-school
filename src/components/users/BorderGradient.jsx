@@ -9,8 +9,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 export default function BorderGradient({ color1, color2, color3, width, radius }) {
 
-  const colors = [color1 || '#039e37', color2 || '#b2ff59', color3 || null ]
-
+  const colors = [color1 || '#039e37', color2 || '#b2ff59' ]
+  if (color3) colors.push(color3);
   return (
   <MaskedView
     maskElement={(

@@ -17,7 +17,7 @@ export default function SongsCard() {
       <BorderGradient
       color1='#177d9c'
       color2='#16d2f7'
-      color3='#116078'
+      // color3='#116078'
       />
 
       <Text style={styles.headerText}>Songs</Text>

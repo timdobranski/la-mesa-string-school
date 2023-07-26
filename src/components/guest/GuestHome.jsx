@@ -24,7 +24,7 @@ const GuestHome = () => {
       </Text>
 
       <Pressable
-        onPress={() =>{ console.log('clicked!'); goTo.SelectSpot(nav)}}
+        onPress={() =>{ console.log('clicked!'); goTo.SignUp1SelectSpot(nav)}}
         style={styles.signInButton}>
           <Text style={styles.signInButtonText}>New User Signup</Text>
       </Pressable>

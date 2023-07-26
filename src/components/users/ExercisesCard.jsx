@@ -16,7 +16,8 @@ export default function ExercisesCard() {
     <BorderGradient
     color1='#039e37'
     color2='#b2ff59'
-    color3='#039e37'/>
+    // color3='#039e37'
+    />
 
    <Text style={styles.headerText}>Exercises</Text>
 

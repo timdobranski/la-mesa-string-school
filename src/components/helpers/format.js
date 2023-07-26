@@ -1,7 +1,28 @@
-const goTo = {
-  SignIn: (navigation) => {
-    console.log('Going to Sign In');
-    navigation.navigate('Sign In');
+const format = {
+  phoneNumber: (input) => {
+  // Remove all non-numeric characters from the input
+  const numericInput = input.replace(/\D/g, '');
+
+  // Apply formatting only if numericInput has a value
+  if (numericInput) {
+    let formattedPhoneNumber = '(';
+
+    if (numericInput.length > 3) {
+      formattedPhoneNumber += numericInput.substr(0, 3) + ')';
+      if (numericInput.length > 6) {
+        formattedPhoneNumber += numericInput.substr(3, 3) + '-';
+        formattedPhoneNumber += numericInput.substr(6, 4);
+      } else {
+        formattedPhoneNumber += numericInput.substr(3);
+      }
+    } else {
+      formattedPhoneNumber += numericInput;
+    }
+
+    return formattedPhoneNumber;
+  }
+
+  return ''; // Return an empty string if the input is empty
   },
   UserHome: (navigation) => {
     console.log('Going to User Home');
@@ -45,4 +66,4 @@ const goTo = {
   }
   };
 
-export default goTo;
+export default format;
