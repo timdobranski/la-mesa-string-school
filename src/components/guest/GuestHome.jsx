@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ImageBackground, StyleSheet, Text, ScrollView, Pressable, View } from 'react-native';
 import Header from '../Header/Header';
 import Schedule from '../Schedule/Schedule';
@@ -13,11 +13,22 @@ import supabase from '../../../supabase';
 const GuestHome = () => {
   const nav = useNavigation();
 
-  return (
+  // check login status
+  async function checkLoginStatus ()  {
+    const { data, error } = await supabase.auth.getSession()
+    if (data.session) { console.log('guest home session return: ', data); goTo.UserHome(nav);}
+    if (error) {console.log('Error in getSession: ', error);}
+  }
 
+  useEffect(() => {
+    checkLoginStatus();
+  })
+
+  return (
     < ScrollView contentContainerStyle={styles.scrollviewChildren} style={styles.container}>
+
       <View style={styles.headerContainer}>
-      <Header />
+        <Header />
       </View>
       <Text style={styles.headerText}>
         {`Welcome! \nChoose your adventure:`}

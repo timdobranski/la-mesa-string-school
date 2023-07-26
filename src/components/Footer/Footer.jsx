@@ -9,7 +9,7 @@ export default function Footer() {
   const [ session, setSession ] = useState(null);
 
 
-  console.log('session in footer: ', supabase.auth.session);
+  // console.log('session in footer: ', supabase.auth.session);
   const nav = useNavigation();
   return (
     <View style={styles.footerContainer}>

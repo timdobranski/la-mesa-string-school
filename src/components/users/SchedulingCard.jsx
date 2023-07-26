@@ -9,7 +9,7 @@ import { useNavigation } from '@react-navigation/native';
 
 
 
-export default function SchedulingCard() {
+export default function SchedulingCard({ student }) {
   const [showUpcomingLessons, setShowUpcomingLessons] = useState(false);
   const fakeSchedule = [{
     date: '7/21/23',
@@ -27,7 +27,7 @@ export default function SchedulingCard() {
   return (
     <View style={styles.container}>
       <Text style={styles.headerText}>Scheduling</Text>
-      <Text style={styles.text}>Makeups Available: 2</Text>
+      <Text style={styles.text}>{`Makeups Available: ${student.makeups}`}</Text>
       <Text style={styles.comment}>Makeups are added when you cancel before 2pm</Text>
       <Text style={styles.comment}>Limit of 4 max</Text>
 

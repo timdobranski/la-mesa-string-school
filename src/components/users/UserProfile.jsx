@@ -5,42 +5,61 @@ import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import goTo from '../helpers/navigation';
 import { useNavigation } from '@react-navigation/native';
+import ProfileCard from './ProfileCard';
 
 
 export default function UserProfile() {
   const [userSession, setUserSession] = useState(null);
+  const [student, setStudent] = useState(null);
+  const [ isLoading, setIsLoading ] = useState(true);
+
   const nav = useNavigation();
 
-  async function getAndSetSession ()  {
-    const { data, error } = await supabase.auth.getSession()
-    if (data) {
-      console.log('Session User ', data)
-      setUserSession(data.session)
+  async function getAndSetStudent ()  {
+    // get and set session
+    const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
+    if (sessionData) { setUserSession(sessionData.session);
+
+      // get student id from session data
+      const { data: idData, error: idError } = await supabase
+        .from('users')
+        .select('student_id')
+        .eq('email', sessionData.session.user.email);
+      if (idData && idData.length > 0) {
+        // get student info from student id
+        const { data: studentData, error: studentError } = await supabase
+        .from('students')
+        .select('*')
+        .eq('id', idData[0].student_id);
+        if (studentData) { setStudent(studentData[0]); setIsLoading(false);}
+        // handle errors
+        if (studentError) {console.log('Error in getAndSetStudent: ', studentError); }
+      }
+      if (idError) { console.log('Error in getStudentId: ', idError); }
     }
-    if (error) {console.log('Error in getSession; navigating to Guest Home: ', error);
-     }
+    if (sessionError) {console.log('Error in getSession: ', sessionError);
+      goTo.GuestHome(nav);
+    }
   }
 
+
+
+    // get and set session on page load
     useEffect(() => {
-      getAndSetSession();
+      //getAndSetSession();
+      getAndSetStudent()
     }, [])
 
   return (
+    isLoading ? <Text>Loading...</Text> :
+
     <View style={styles.container}>
       <ScrollView style={styles.scrollContainer}>
         <Header />
-
-          <Text style={styles.header}>Your Profile</Text>
-          <Text style={styles.text}>Click on a value to edit it</Text>
-          <Text style={styles.text}>First Name</Text>
-          <Text style={styles.text}>Last Name</Text>
-          <Text style={styles.text}>Email</Text>
-          <Text style={styles.text}>Phone</Text>
-          <Text style={styles.text}>Communication Preference</Text>
-          <Text style={styles.text}>Primary Contact</Text>
+        <ProfileCard student={student}/>
 
           <View style={styles.signOutContainer}>
-          <Pressable style={styles.signOut}onPress={() => goTo.GuestHome(nav)}>
+          <Pressable style={styles.signOut}>
             <Text style={styles.signOutText}>Sign Out</Text>
           </Pressable>
         </View>

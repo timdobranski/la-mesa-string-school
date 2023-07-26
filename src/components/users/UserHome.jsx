@@ -12,37 +12,67 @@ import ProfileCard from './ProfileCard';
 
 export default function UserHome() {
   const [userSession, setUserSession] = useState(null);
+  const [student, setStudent] = useState(null);
+  const [studentId, setStudentId] = useState(null);
+  const [ isLoading, setIsLoading ] = useState(true);
   const nav = useNavigation();
 
-  async function getAndSetSession ()  {
-    const { data, error } = await supabase.auth.getSession()
-    if (data) {
-      console.log('Session User ', data)
-      setUserSession(data.session)
-    }
-    if (error) {console.log('Error in getSession; navigating to Guest Home: ', error);
+
+  async function getAndSetStudent ()  {
+    // get and set session
+    const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
+    if (sessionData) { setUserSession(sessionData.session);
+      console.log('--------1/3 sessionData: ', sessionData);
+      // get student id from session data
+      const { data: idData, error: idError } = await supabase
+        .from('users')
+        .select('student_id')
+        .eq('email', sessionData.session.user.email);
+      if (idData && idData.length > 0) {
+        // get student info from student id
+        console.log('--------2/3 idData: ', idData);
+        const { data: studentData, error: studentError } = await supabase
+        .from('students')
+        .select('*')
+        .eq('id', idData[0].student_id);
+        if (studentData) {
+          console.log('--------3/3 studentData: ', studentData);
+          setStudent(studentData[0]);
+          setIsLoading(false);
+        }
+        // handle errors
+        if (studentError) {console.log('Error in getAndSetStudent: ', studentError); }
       }
+      if (idError) { console.log('Error in getStudentId: ', idError); }
+    }
+    if (sessionError) {console.log('Error in getSession: ', sessionError);
+      goTo.GuestHome(nav);
+    }
   }
 
+
+
+    // get and set session on page load
     useEffect(() => {
-      getAndSetSession();
+      //getAndSetSession();
+      getAndSetStudent()
     }, [])
 
+
   return (
+
+    isLoading === true ? <Text>Loading...</Text> :
+
     <View style={styles.container}>
       <ScrollView style={styles.scrollContainer}>
         <Header />
-
-
-          <Text style={styles.studentName}>Jimi Hendrix</Text>
-
-
-          <SchedulingCard />
-          <PaymentsCard />
-          <ProfileCard />
+          <Text style={styles.studentName}>{`${student.first_name} ${student.last_name}`}</Text>
+          <Text style={styles.studentName}>{`${student.day}s @ ${student.time}`}</Text>
+          <SchedulingCard student={student}/>
+          <PaymentsCard student={student}/>
+          <View style={styles.footerFiller}></View>
         </ScrollView>
-        <Footer />
-
+        <Footer student={student}/>
         </View>
 
   );
@@ -52,7 +82,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-
   text: {
     color: 'white',
     fontFamily: 'economica',
@@ -67,7 +96,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 8,
     padding: 10,
-
   },
   studentName: {
     color: 'white',
@@ -75,5 +103,8 @@ const styles = StyleSheet.create({
     fontSize: 40,
     textAlign: 'center',
     marginVertical: 20,
+  },
+  footerFiller: {
+    height: 100,
   }
 });

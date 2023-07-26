@@ -9,13 +9,11 @@ import goTo from '../helpers/navigation';
 
 
 export default function SignUp3AddInfo ({ route }) {
-  const [isParent, setIsParent] = useState(false);
   const [email, setEmail] = useState('');
   const [ loading, setLoading ] = useState(false);
   const [ firstName, setFirstName ] = useState('');
   const [ lastName, setLastName ] = useState('');
   const [ phone, setPhone ] = useState('');
-  const [ buttonColor, setButtonColor ] = useState(false);
   const [ communicationPreference, setCommunicationPreference ] = useState('email');
   const [ session, setSession ] = useState(null);
   const [ user, setUser ] = useState(null);
@@ -45,7 +43,6 @@ export default function SignUp3AddInfo ({ route }) {
 
   async function signUpWithEmail() {
     setLoading(true)
-    console.log('student id-----------: ', studentId)
     // add data to users table
     const { data, error } = await supabase
       .from('users')
@@ -58,14 +55,13 @@ export default function SignUp3AddInfo ({ route }) {
         student_id: studentId,
         auth_user_id: user.identities[0].user_id,
       })
-
       if (error) {
         Alert.alert(error.message)
         setLoading(false)
         return
       } else {
-        console.log('data: ', data)
         goTo.UserHome(nav);
+
       }
   }
 
@@ -77,7 +73,6 @@ export default function SignUp3AddInfo ({ route }) {
       <View style={[styles.verticallySpaced, styles.signupHeaderContainer]}>
       <Text style={styles.signupHeaderText}>Just add the info below to complete signup:</Text>
 
-      {isParent ? <Text style={[styles.signupHeaderText, styles.finePrint]}>{'(if your kiddo is older, they can make an account later too or use yours)'}</Text> : null}
     </View>
 
     <View>
