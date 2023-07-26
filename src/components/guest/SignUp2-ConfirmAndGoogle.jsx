@@ -10,12 +10,44 @@ import { GOOGLE_IOS_CLIENT_ID, GOOGLE_WEB_CLIENT_ID } from '@env';
 import supabase from '../../../supabase';
 
 
-const SignupNew = () => {
+const SignupNew = ({ route }) => {
   const nav = useNavigation();
   const [ text, setText] = useState('')
   const [ disabled, setDisabled] = useState(true)
-  const studentName = 'Tim';
+  const [ studentName, setStudentName ] = useState(null)
+  const [ studentLastName, setStudentLastName ] = useState(null)
+  const [studentId, setStudentId] = useState(null)
+  // const studentName = 'Tim';
 
+    //console.log('route: ', route);
+  const { day } = route.params;
+  const { time } = route.params;
+
+  // get student name from supabase
+  async function getStudentName() {
+    const { data, error } = await supabase
+      .from('students')
+      .select('first_name, last_name, id')
+      .eq('day', day)
+      .eq('time', time)
+      .limit(1)
+
+    if (error) {
+      console.log('error getting student name: ', error)
+    }
+    if (data) {
+      console.log('data: ', data)
+      setStudentName(data[0].first_name)
+      setStudentLastName(data[0].last_name)
+      setStudentId(data[0].id)
+    }
+  }
+
+  useEffect(() => {
+    getStudentName()
+  }, [])
+
+  // when text field changes, check if it matches student name
   useEffect(() => {
     if (text === studentName) {
       setDisabled(false)
@@ -40,8 +72,9 @@ const SignupNew = () => {
         console.log('Signed up new user: ', JSON.stringify(data));
         const { user: sessionUser } = data;
         if (sessionUser) {
-          console.log('session user confirmed: ', sessionUser)
-          goTo.SignUp3AddInfo(nav);
+          // console.log('session user confirmed: ', sessionUser)
+          // goTo.SignUp3AddInfo(nav);
+          nav.navigate('Sign Up 3: Add Info', { studentId: studentId })
         }
         // return data;
 
@@ -67,9 +100,6 @@ async function signInWithGoogle() {
 }
 }
 
-
-
-
   return (
     <ScrollView
       contentContainerStyle={styles.scrollviewChildren}
@@ -81,12 +111,13 @@ async function signInWithGoogle() {
       </Pressable>
 
       <View style={styles.spotContainer}>
-        <Text style={styles.spotText}>Monday, July 10th @ 7:00</Text>
+        <Text style={styles.spotText}>{`${day}s @ ${time}`}</Text>
       </View>
 
       {disabled === false ?
       <View style={styles.messageContainer}>
-        <Text style={styles.header}>{`Student: ${studentName}`}</Text>
+        <Text style={styles.header}>{`Student:`}</Text>
+        <Text style={styles.header}>{`${studentName} ${studentLastName}`}</Text>
         <Text style={styles.text}>{`Great! Next, sign in with Google below:`}</Text>
         <Text style={styles.text}>{`*Google signin is required for scheduling access via Google calendar at this time`}</Text>
       </View>
@@ -101,7 +132,7 @@ async function signInWithGoogle() {
           labelStyle={styles.label}
           onChangeText={(text) => setText(text)}
           value={text}
-          placeholder="first name only"
+          placeholder=""
           autoCapitalize={'none'}
           color='white'
       />}

@@ -8,7 +8,7 @@ import format from '../helpers/format'
 import goTo from '../helpers/navigation';
 
 
-export default function SignUp3AddInfo () {
+export default function SignUp3AddInfo ({ route }) {
   const [isParent, setIsParent] = useState(false);
   const [email, setEmail] = useState('');
   const [ loading, setLoading ] = useState(false);
@@ -21,7 +21,7 @@ export default function SignUp3AddInfo () {
   const [ user, setUser ] = useState(null);
 
 
-  const studentId = 3;
+  const { studentId } = route.params;
   const nav = useNavigation();
 
 
@@ -45,17 +45,16 @@ export default function SignUp3AddInfo () {
 
   async function signUpWithEmail() {
     setLoading(true)
-
+    console.log('student id-----------: ', studentId)
     // add data to users table
     const { data, error } = await supabase
       .from('users')
       .insert({
-        email: email || null,
+        email: email || user.identities[0].identity_data.email,
         first_name: firstName,
         last_name: lastName,
         phone: phone,
         comm_pref: communicationPreference,
-        // is_parent: isParent,
         student_id: studentId,
         auth_user_id: user.identities[0].user_id,
       })
@@ -65,6 +64,7 @@ export default function SignUp3AddInfo () {
         setLoading(false)
         return
       } else {
+        console.log('data: ', data)
         goTo.UserHome(nav);
       }
   }
