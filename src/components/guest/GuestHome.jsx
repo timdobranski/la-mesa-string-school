@@ -6,9 +6,11 @@ import { useNavigation } from '@react-navigation/native';
 // import { useEffect, useState }  from 'react';
 import goTo from '../helpers/navigation';
 import supabase from '../../../supabase';
+import {GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
+import { GOOGLE_IOS_CLIENT_ID, GOOGLE_WEB_CLIENT_ID } from '@env';
 
-
-
+const iOSclientId = GOOGLE_IOS_CLIENT_ID;
+const webClientId = GOOGLE_WEB_CLIENT_ID;
 
 const GuestHome = () => {
   const nav = useNavigation();
@@ -17,8 +19,8 @@ const GuestHome = () => {
   async function checkLoginStatus ()  {
     const { data, error } = await supabase.auth.getSession()
     if (data.session) { console.log('guest home session return: ', data);
-    // goTo.UserHome(nav);
-    supabase.auth.signOut();
+    goTo.UserHome(nav);
+    // supabase.auth.signOut();
   }
     if (error) {console.log('Error in getSession: ', error);}
   }
@@ -26,6 +28,43 @@ const GuestHome = () => {
   useEffect(() => {
     checkLoginStatus();
   })
+
+  // supabase signin
+  async function handleSupabaseSignIn(user) {
+    try {
+
+        // sign in with Supabase
+        const { data, error } = await supabase.auth.signInWithPassword({
+          email: user.email,
+          password: user.id, // Use the "id" as the password for signing in
+        });
+
+        if (error) {
+          console.error('Error signing in with Supabase: ', error.message);
+        }
+        if (data) {goTo.UserHome(nav);}
+
+    } catch (error) {
+      console.error('Error handling Supabase sign-in:', error.message);
+
+    }
+  }
+
+  // native google signin
+  async function signInWithGoogle() {
+    GoogleSignin.configure({
+      iosClientId: iOSclientId,
+      webClientId: webClientId,
+      offlineAccess: true,
+    });
+    try {
+      const userInfo = await GoogleSignin.signIn();
+      console.log('google response: ', userInfo);
+      await handleSupabaseSignIn(userInfo.user)
+    } catch (error) {
+      console.log('catch error: ', error);
+    }
+  }
 
   return (
     < ScrollView contentContainerStyle={styles.scrollviewChildren} style={styles.container}>
@@ -36,18 +75,17 @@ const GuestHome = () => {
       <Text style={styles.headerText}>
         {`Welcome! \nChoose your adventure:`}
       </Text>
-
+      <Text style={styles.text}>First time users:</Text>
       <Pressable
         onPress={() =>{ console.log('clicked!'); goTo.SignUp(nav)}}
         style={styles.signInButton}>
-          <Text style={styles.signInButtonText}>New User Signup</Text>
+          <Text style={styles.signInButtonText}>Sign Up</Text>
       </Pressable>
-
-      <Pressable
-        onPress={() =>{ console.log('clicked!'); goTo.SignIn(nav)}}
-        style={styles.signInButton}>
-          <Text style={styles.signInButtonText}>Existing User Sign In</Text>
-      </Pressable>
+    <Text style={styles.text}>or for existing users:</Text>
+      <GoogleSigninButton
+        size={GoogleSigninButton.Size.Narrow}
+        onPress={signInWithGoogle}
+        />
 
     </ScrollView>
     // </ImageBackground>
@@ -85,7 +123,7 @@ const styles = StyleSheet.create({
   },
   signInButton: {
     backgroundColor: 'white',
-    borderRadius: 5,
+    borderRadius: 2,
     padding: 10,
     width: '50%',
     alignItems: 'center',

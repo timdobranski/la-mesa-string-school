@@ -11,7 +11,7 @@ const SignInView = () => {
   return (
 
     <View>
-      {/* <Header /> */}
+      <Header />
         <Text style={styles.text}>{ `Sign In`}</Text>
         <Pressable onPress={() => {goTo.GuestHome(nav)}} style={styles.backContainer}>
           <Ionicons name="arrow-back-circle" size={50} color="white" />

@@ -80,7 +80,7 @@ async function signInWithGoogle() {
       return (
         <View style={styles.container}>
 
-      <View style={[styles.verticallySpaced]}>
+      {/* <View style={[styles.verticallySpaced]}>
         <Input
           label="Email"
           labelStyle={styles.label}
@@ -90,9 +90,9 @@ async function signInWithGoogle() {
           autoCapitalize={'none'}
           color='white'
           />
-      </View>
+      </View> */}
 
-      <View style={styles.verticallySpaced}>
+      {/* <View style={styles.verticallySpaced}>
         <Input
           label="Password"
           labelStyle={styles.label}
@@ -103,18 +103,17 @@ async function signInWithGoogle() {
           autoCapitalize={'none'}
           color='white'
           />
+      </View> */}
       <View style={[styles.verticallySpaced, styles.centered, ]}>
-        <Button title="Sign in" disabled={loading} onPress={() => signInWithEmail()} style={styles.signInButton} />
+        {/* <Button title="Sign in" disabled={loading} onPress={() => signInWithEmail()} style={styles.signInButton} /> */}
         {/* <Text style={styles.or}>Or, sign in with Google: </Text> */}
         <GoogleSigninButton
         size={GoogleSigninButton.Size.Narrow}
         onPress={signInWithGoogle}
         />
-                <Text style={styles.or}>Skip sign in and explore the app: </Text>
-        {/* <Button title="Google signin 2" onPress={googleSignin2} /> */}
-        <Button title="Explore App" onPress={() => {goTo.UserHome(nav)}} />
+        {/* <Text style={styles.or}>Skip sign in and explore the app: </Text>
+        <Button title="Explore App" onPress={() => {goTo.UserHome(nav)}} /> */}
 
-      </View>
       </View>
     </View>
   )

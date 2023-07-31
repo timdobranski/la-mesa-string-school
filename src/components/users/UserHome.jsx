@@ -27,7 +27,7 @@ export default function UserHome() {
       const { data: idData, error: idError } = await supabase
         .from('users')
         .select('student_id')
-        .eq('email', sessionData.session.user.email);
+        .eq('preferred_email', sessionData.session.user.email);
       if (idData && idData.length > 0) {
         // get student info from student id
         console.log('--------2/3 idData: ', idData);
@@ -54,37 +54,37 @@ export default function UserHome() {
 
     // get and set session on page load
     useEffect(() => {
-      // getAndSetStudent()
+      getAndSetStudent()
     }, [])
 
 
   return (
 
-    // isLoading === true ? <Text>Loading...</Text> :
-
-    // <View style={styles.container}>
-    //   <ScrollView style={styles.scrollContainer}>
-    //     <Header />
-    //       <Text style={styles.studentName}>{`${student.first_name} ${student.last_name}`}</Text>
-    //       <Text style={styles.studentName}>{`${student.day}s @ ${student.time}`}</Text>
-    //       <SchedulingCard student={student}/>
-    //       <PaymentsCard student={student}/>
-    //       <View style={styles.footerFiller}></View>
-    //     </ScrollView>
-    //     <Footer student={student}/>
-    //     </View>
+    isLoading === true ? <Text>Loading...</Text> :
 
     <View style={styles.container}>
-    <ScrollView style={styles.scrollContainer}>
-      <Header />
-        <Text style={styles.studentName}>{`Jimi Hendrix`}</Text>
-        {/* <Text style={styles.studentName}>{`${student.day}s @ ${student.time}`}</Text> */}
-        <SchedulingCard student={student}/>
-        <PaymentsCard student={student}/>
-        <View style={styles.footerFiller}></View>
-      </ScrollView>
-      <Footer student={student}/>
-      </View>
+      <ScrollView style={styles.scrollContainer}>
+        <Header />
+          <Text style={styles.studentName}>{`${student.first_name} ${student.last_name}`}</Text>
+          <Text style={styles.studentName}>{`${student.day}s @ ${student.time}`}</Text>
+          <SchedulingCard student={student}/>
+          <PaymentsCard student={student}/>
+          <View style={styles.footerFiller}></View>
+        </ScrollView>
+        <Footer student={student}/>
+        </View>
+
+    // <View style={styles.container}>
+    // <ScrollView style={styles.scrollContainer}>
+    //   <Header />
+    //     <Text style={styles.studentName}>{`Jimi Hendrix`}</Text>
+    //     {/* <Text style={styles.studentName}>{`${student.day}s @ ${student.time}`}</Text> */}
+    //     <SchedulingCard student={student}/>
+    //     <PaymentsCard student={student}/>
+    //     <View style={styles.footerFiller}></View>
+    //   </ScrollView>
+    //   <Footer student={student}/>
+    //   </View>
 
   );
 }

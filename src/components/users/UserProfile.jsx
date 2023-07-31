@@ -24,7 +24,7 @@ export default function UserProfile() {
       const { data: idData, error: idError } = await supabase
         .from('users')
         .select('student_id')
-        .eq('email', sessionData.session.user.email);
+        .eq('preferred_email', sessionData.session.user.email);
       if (idData && idData.length > 0) {
         // get student info from student id
         const { data: studentData, error: studentError } = await supabase
