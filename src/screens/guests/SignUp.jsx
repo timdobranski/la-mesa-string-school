@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, ScrollView, Pressable, View } from 'react-native';
-import Header from '../Header/Header';
-import Schedule from '../Schedule/Schedule';
+import Header from '../../components/Header/Header';
+import Schedule from '../../components/Schedule/Schedule';
 import { useNavigation } from '@react-navigation/native';
-import goTo from '../helpers/navigation';
+import goTo from '../../helpers/navigation';
 import { Ionicons } from '@expo/vector-icons';
-import SignUp1SelectSpot from './SignUp1-SelectSpot';
-import SignUp2ConfirmAndGoogle from './SignUp2-ConfirmAndGoogle';
-import SignUp3AddInfo from './SignUp3-AddInfo';
+import SignUp1SelectSpot from '../../components/guests/SignUp1-SelectSpot';
+import SignUp2ConfirmAndGoogle from '../../components/guests/SignUp2-ConfirmAndGoogle';
+import SignUp3AddInfo from '../../components/guests/SignUp3-AddInfo';
 
 const SignUp = () => {
   const [ step, setStep ] = useState(1);

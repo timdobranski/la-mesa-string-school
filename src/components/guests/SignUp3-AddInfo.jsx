@@ -5,8 +5,8 @@ import  supabase  from '../../../supabase'
 import { Button, Input } from '@rneui/themed'
 import { useNavigation } from '@react-navigation/native';
 import { Picker } from '@react-native-picker/picker';
-import format from '../helpers/format'
-import goTo from '../helpers/navigation';
+import format from '../../helpers/format'
+import goTo from '../../helpers/navigation';
 
 
 export default function SignUp3AddInfo ({ session, user, studentId, tokens }) {

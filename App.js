@@ -9,16 +9,16 @@ import { createStackNavigator, TransitionPresets } from '@react-navigation/stack
 // Screens
 
 // signup
-import GuestHome from './src/components/guest/GuestHome';
-import SignUp from './src/components/guest/SignUp';
+import GuestHome from './src/screens/guests/GuestHome';
+import SignUp from './src/screens/guests/SignUp';
 // signin
-import SignInView from './src/components/guest/SignInView';
+// import SignInView from './src/components/guest/SignInView';
 // user
-import UserHome from './src/components/users/UserHome';
-import Practice from './src/components/users/Practice';
-import Progress from './src/components/users/Progress';
-import StudentResources from './src/components/users/StudentResources';
-import UserProfile from './src/components/users/UserProfile';
+import UserHome from './src/screens/users/UserHome';
+import Practice from './src/screens/users/Practice';
+import Progress from './src/screens/users/Progress';
+import StudentResources from './src/screens/users/StudentResources';
+import UserProfile from './src/screens/users/UserProfile';
 // import CheckEmail from './src/components/guest/CheckEmail';
 
 
@@ -67,7 +67,7 @@ const navTheme = {
 
               <Stack.Screen name="Sign Up" component={SignUp} />
 
-              <Stack.Screen name="Sign In" component={SignInView} />
+              {/* <Stack.Screen name="Sign In" component={SignInView} /> */}
               {/* <Stack.Screen name="Check Email" component={CheckEmail} /> */}
 
               <Stack.Screen name="User Home" component={UserHome} />

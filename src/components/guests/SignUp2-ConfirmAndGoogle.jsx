@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
-import goTo from '../helpers/navigation';
+import goTo from '../../helpers/navigation';
 import { Button, Input } from '@rneui/themed'
 import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
 import { GOOGLE_IOS_CLIENT_ID, GOOGLE_WEB_CLIENT_ID } from '@env';

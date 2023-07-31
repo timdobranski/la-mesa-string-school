@@ -11,7 +11,7 @@ export default function ProfileCard({ student={
 
   return (
     <View style={styles.container}>
-      <Text style={styles.headerText}>Your Profile</Text>
+      <Text style={styles.headerText}>Student Profile</Text>
 
       <Text style={styles.label}>Student Name</Text>
       <Text style={styles.comment}>{`${student.first_name} ${student.last_name}`}</Text>

@@ -1,11 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import supabase from '../../../supabase';
-import { StyleSheet, View, Alert, Text, Pressable } from 'react-native';
-import Footer from '../Footer/Footer';
-import Header from '../Header/Header';
-import goTo from '../helpers/navigation';
-import { useNavigation } from '@react-navigation/native';
-// import { Picker } from '@react-native-picker/picker';
+import React, { useState } from 'react';
+
+import { StyleSheet, View,  Text, Pressable } from 'react-native';
+
 
 
 

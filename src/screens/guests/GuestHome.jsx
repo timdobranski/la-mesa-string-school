@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react';
-import { ImageBackground, StyleSheet, Text, ScrollView, Pressable, View } from 'react-native';
-import Header from '../Header/Header';
-import Schedule from '../Schedule/Schedule';
+import { StyleSheet, Text, ScrollView, Pressable, View } from 'react-native';
+import Header from '../../components/Header/Header';
+import goTo from '../../helpers/navigation';
 import { useNavigation } from '@react-navigation/native';
-// import { useEffect, useState }  from 'react';
-import goTo from '../helpers/navigation';
 import supabase from '../../../supabase';
 import {GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
 import { GOOGLE_IOS_CLIENT_ID, GOOGLE_WEB_CLIENT_ID } from '@env';

@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import supabase from '../../../supabase';
-import { StyleSheet, View, ScrollView } from 'react-native';
-import Footer from '../Footer/Footer';
-import Header from '../Header/Header';
-
-import PracticeLogCard from './PracticeLogCard';
-import LogPracticeCard from './LogPracticeCard';
+import { StyleSheet, View, Text, ScrollView } from 'react-native';
+import Footer from '../../components/Footer/Footer';
+import Header from '../../components/Header/Header';
 
 
-export default function Practice() {
+
+export default function Progress() {
   const [userSession, setUserSession] = useState(null);
+
 
   async function getAndSetSession ()  {
     const { data, error } = await supabase.auth.getSession()
     if (data) {
-      console.log('getSession response: ', data)
+      console.log('Session User ', data)
       setUserSession(data.session)
     }
     if (error) {console.log('Error in getSession; navigating to Guest Home: ', error);
@@ -25,14 +24,16 @@ export default function Practice() {
       getAndSetSession();
     }, [])
 
-    console.log('userSession: ', userSession);
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scrollContainer}>
         <Header />
 
-      <PracticeLogCard />
-      <LogPracticeCard />
+
+          <Text style={styles.header}>Progress & Practice</Text>
+          <Text style={styles.text}>Practice more. No, more!</Text>
+
+
 
 
         </ScrollView>
@@ -51,9 +52,8 @@ const styles = StyleSheet.create({
     color: 'white',
     fontFamily: 'economica',
     fontSize: 22,
-    textDecorationLine: 'underline',
+    fontWeight: 'bold',
     textAlign: 'center',
-    marginTop:30
   },
   signOutContainer: {
     alignItems: 'flex-end',
@@ -71,10 +71,5 @@ const styles = StyleSheet.create({
     fontSize: 40,
     textAlign: 'center',
     marginVertical: 20,
-  },
-  comment: {
-    color: '#cccccc',
-    fontStyle: 'italic',
-    textAlign: 'center',
   }
 });

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Pressable, Image } from 'react-native';
 import { FontAwesome, AntDesign, MaterialIcons, Ionicons } from '@expo/vector-icons';
-import goTo from '../helpers/navigation';
+import goTo from '../../helpers/navigation';
 import { useNavigation } from '@react-navigation/native';
 import supabase from '../../../supabase';
 

@@ -4,7 +4,7 @@ import styles from './scheduleStyling.js';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import BorderGradient from '../users/BorderGradient.jsx';
-import goTo from '../helpers/navigation';
+import goTo from '../../helpers/navigation';
 
 export default function Schedule ({ type, setDay, setTime, setStep}) {
   const nav = useNavigation();

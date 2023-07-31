@@ -3,7 +3,7 @@ import { StyleSheet, Text, ScrollView, Pressable, View } from 'react-native';
 import Header from '../Header/Header';
 import Schedule from '../Schedule/Schedule';
 import { useNavigation } from '@react-navigation/native';
-import goTo from '../helpers/navigation';
+import goTo from '../../helpers/navigation';
 import { Ionicons } from '@expo/vector-icons';
 
 
@@ -26,7 +26,7 @@ const SelectSpot = ({ setStep, setDay, setTime, setStudentId }) => {
       <Text style={styles.text}>
         {`To sign up, choose your current weekly spot below:`}
       </Text>
-      <Schedule type={'single'} setDay={setDay} setTime={setTime} setStep={setStep}/>
+      <Schedule type={'single'} setDay={setDay} setTime={setTime} setStep={setStep} setStudentId={setStudentId}/>
     </ScrollView>
 
   );

@@ -1,28 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import supabase from '../../../supabase';
-import { StyleSheet, View, Alert, Text, ImageBackground, Pressable, ScrollView } from 'react-native';
-import Footer from '../Footer/Footer';
-import Header from '../Header/Header';
-import goTo from '../helpers/navigation';
+import { StyleSheet, View, Alert, Text, Pressable, ScrollView } from 'react-native';
+import Footer from '../../components/Footer/Footer';
+import Header from '../../components/Header/Header';
+import goTo from '../../helpers/navigation';
 import { useNavigation } from '@react-navigation/native';
-import SchedulingCard from './SchedulingCard';
-import PaymentsCard from './PaymentsCard';
-import ProfileCard from './ProfileCard';
+import ProfileCard from '../../components/users/ProfileCard';
 
 
-export default function UserHome() {
+export default function UserProfile() {
   const [userSession, setUserSession] = useState(null);
   const [student, setStudent] = useState(null);
-  const [studentId, setStudentId] = useState(null);
   const [ isLoading, setIsLoading ] = useState(true);
-  const nav = useNavigation();
 
+  const nav = useNavigation();
 
   async function getAndSetStudent ()  {
     // get and set session
     const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
     if (sessionData) { setUserSession(sessionData.session);
-      console.log('--------1/3 sessionData: ', sessionData);
+
       // get student id from session data
       const { data: idData, error: idError } = await supabase
         .from('users')
@@ -30,16 +27,11 @@ export default function UserHome() {
         .eq('preferred_email', sessionData.session.user.email);
       if (idData && idData.length > 0) {
         // get student info from student id
-        console.log('--------2/3 idData: ', idData);
         const { data: studentData, error: studentError } = await supabase
         .from('students')
         .select('*')
         .eq('id', idData[0].student_id);
-        if (studentData) {
-          console.log('--------3/3 studentData: ', studentData);
-          setStudent(studentData[0]);
-          setIsLoading(false);
-        }
+        if (studentData) { setStudent(studentData[0]); setIsLoading(false);}
         // handle errors
         if (studentError) {console.log('Error in getAndSetStudent: ', studentError); }
       }
@@ -50,41 +42,41 @@ export default function UserHome() {
     }
   }
 
-
+  async function signUserOut() {
+    try {
+      await supabase.auth.signOut();
+        console.log('User signed out successfully');
+        goTo.GuestHome(nav);
+    } catch (error) {
+      Alert.alert('Error signing out', error.message);
+    }
+  }
 
     // get and set session on page load
     useEffect(() => {
+      //getAndSetSession();
       getAndSetStudent()
     }, [])
 
 
   return (
-
-    isLoading === true ? <Text>Loading...</Text> :
+    isLoading ? <Text>Loading...</Text> :
 
     <View style={styles.container}>
       <ScrollView style={styles.scrollContainer}>
         <Header />
-          <Text style={styles.studentName}>{`${student.first_name} ${student.last_name}`}</Text>
-          <Text style={styles.studentName}>{`${student.day}s @ ${student.time}`}</Text>
-          <SchedulingCard student={student}/>
-          <PaymentsCard student={student}/>
-          <View style={styles.footerFiller}></View>
-        </ScrollView>
-        <Footer student={student}/>
+        <ProfileCard student={student}/>
+
+          <View style={styles.signOutContainer}>
+          <Pressable style={styles.signOut} onPress={signUserOut}>
+            <Text style={styles.signOutText}>Sign Out</Text>
+          </Pressable>
         </View>
 
-    // <View style={styles.container}>
-    // <ScrollView style={styles.scrollContainer}>
-    //   <Header />
-    //     <Text style={styles.studentName}>{`Jimi Hendrix`}</Text>
-    //     {/* <Text style={styles.studentName}>{`${student.day}s @ ${student.time}`}</Text> */}
-    //     <SchedulingCard student={student}/>
-    //     <PaymentsCard student={student}/>
-    //     <View style={styles.footerFiller}></View>
-    //   </ScrollView>
-    //   <Footer student={student}/>
-    //   </View>
+
+        </ScrollView>
+        <Footer />
+        </View>
 
   );
 }
@@ -93,29 +85,29 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+
   text: {
     color: 'white',
     fontFamily: 'economica',
     fontSize: 22,
     fontWeight: 'bold',
+    textAlign: 'center',
   },
   signOutContainer: {
-    alignItems: 'flex-end',
-    padding: 10,
+    alignItems: 'center',
+    padding: 30,
   },
   signOut: {
     backgroundColor: 'white',
     borderRadius: 8,
     padding: 10,
+
   },
-  studentName: {
+  header: {
     color: 'white',
     fontFamily: 'economica',
     fontSize: 40,
     textAlign: 'center',
     marginVertical: 20,
-  },
-  footerFiller: {
-    height: 100,
   }
 });

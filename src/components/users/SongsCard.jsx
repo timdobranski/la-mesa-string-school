@@ -1,10 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import supabase from '../../../supabase';
-import { StyleSheet, View, Alert, Text, Pressable } from 'react-native';
-import Footer from '../Footer/Footer';
-import Header from '../Header/Header';
-import goTo from '../helpers/navigation';
-import { useNavigation } from '@react-navigation/native';
+import React, { useState } from 'react';
+
+import { StyleSheet, View, Text } from 'react-native';
+
 import BorderGradient from './BorderGradient';
 
 
@@ -25,7 +22,6 @@ export default function SongsCard() {
       <Text style={styles.text}>Song Search</Text>
       <Text style={styles.comment}>Search by song name or artist</Text>
 
-
       <Text style={styles.text}>Recent Songs</Text>
       <Text style={styles.comment}>Livin La Vida Loca - Ricky Martin</Text>
       <Text style={styles.comment}>Mmmmbop - Hanson</Text>
@@ -45,8 +41,6 @@ export default function SongsCard() {
 
 const styles = StyleSheet.create({
   container: {
-    // borderColor: '#05a7d7',
-    // borderWidth: 8,
     borderRadius: 8,
     marginBottom: 15,
     marginTop: 15,
@@ -86,7 +80,5 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
     textAlign: 'center',
   }
-
-
 });
 

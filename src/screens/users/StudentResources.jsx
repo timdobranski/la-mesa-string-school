@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import supabase from '../../../supabase';
-import { StyleSheet, View, Text, ScrollView } from 'react-native';
-import Footer from '../Footer/Footer';
-import Header from '../Header/Header';
+import { StyleSheet, View, Alert, Text, ImageBackground, Pressable, ScrollView } from 'react-native';
+import Footer from '../../components/Footer/Footer';
+import Header from '../../components/Header/Header';
+import goTo from '../../helpers/navigation';
+import { useNavigation } from '@react-navigation/native';
+import SongsCard from '../../components/users/SongsCard';
+import ExercisesCard from '../../components/users/ExercisesCard';
+import MoreResourcesCard from '../../components/users/MoreResourcesCard';
 
 
-export default function Progress() {
+
+export default function StudentResources() {
   const [userSession, setUserSession] = useState(null);
-
+  const nav = useNavigation();
 
   async function getAndSetSession ()  {
     const { data, error } = await supabase.auth.getSession()
@@ -28,12 +34,9 @@ export default function Progress() {
       <ScrollView style={styles.scrollContainer}>
         <Header />
 
-
-          <Text style={styles.header}>Progress & Practice</Text>
-          <Text style={styles.text}>Practice more. No, more!</Text>
-
-
-
+        <SongsCard />
+        <ExercisesCard />
+        <MoreResourcesCard />
 
         </ScrollView>
         <Footer />

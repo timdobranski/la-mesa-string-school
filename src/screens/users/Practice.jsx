@@ -1,24 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import supabase from '../../../supabase';
-import { StyleSheet, View, Alert, Text, ImageBackground, Pressable, ScrollView } from 'react-native';
-import Footer from '../Footer/Footer';
-import Header from '../Header/Header';
-import goTo from '../helpers/navigation';
-import { useNavigation } from '@react-navigation/native';
-import SongsCard from './SongsCard';
-import ExercisesCard from './ExercisesCard';
-import MoreResourcesCard from './MoreResourcesCard';
+import { StyleSheet, View, ScrollView } from 'react-native';
+import Footer from '../../components/Footer/Footer';
+import Header from '../../components/Header/Header';
 
 
+import PracticeLogCard from '../../components/users/PracticeLogCard';
+import LogPracticeCard from '../../components/users/LogPracticeCard';
 
-export default function StudentResources() {
+
+export default function Practice() {
   const [userSession, setUserSession] = useState(null);
-  const nav = useNavigation();
 
   async function getAndSetSession ()  {
     const { data, error } = await supabase.auth.getSession()
     if (data) {
-      console.log('Session User ', data)
+      console.log('getSession response: ', data)
       setUserSession(data.session)
     }
     if (error) {console.log('Error in getSession; navigating to Guest Home: ', error);
@@ -29,14 +26,15 @@ export default function StudentResources() {
       getAndSetSession();
     }, [])
 
+    console.log('userSession: ', userSession);
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scrollContainer}>
         <Header />
 
-        <SongsCard />
-        <ExercisesCard />
-        <MoreResourcesCard />
+      <PracticeLogCard />
+      <LogPracticeCard />
+
 
         </ScrollView>
         <Footer />
@@ -54,8 +52,9 @@ const styles = StyleSheet.create({
     color: 'white',
     fontFamily: 'economica',
     fontSize: 22,
-    fontWeight: 'bold',
+    textDecorationLine: 'underline',
     textAlign: 'center',
+    marginTop:30
   },
   signOutContainer: {
     alignItems: 'flex-end',
@@ -73,5 +72,10 @@ const styles = StyleSheet.create({
     fontSize: 40,
     textAlign: 'center',
     marginVertical: 20,
+  },
+  comment: {
+    color: '#cccccc',
+    fontStyle: 'italic',
+    textAlign: 'center',
   }
 });
