@@ -65,33 +65,29 @@ export default function UserHome() {
     <View style={styles.container}>
       <ScrollView style={styles.scrollContainer}>
         <Header />
+        <View style={styles.studentNameHeaderContainer}>
           <Text style={styles.studentName}>{`${student.first_name} ${student.last_name}`}</Text>
           <Text style={styles.studentName}>{`${student.day}s @ ${student.time}`}</Text>
+        </View>
           <SchedulingCard student={student}/>
           <PaymentsCard student={student}/>
           <View style={styles.footerFiller}></View>
         </ScrollView>
         <Footer student={student}/>
         </View>
-
-    // <View style={styles.container}>
-    // <ScrollView style={styles.scrollContainer}>
-    //   <Header />
-    //     <Text style={styles.studentName}>{`Jimi Hendrix`}</Text>
-    //     {/* <Text style={styles.studentName}>{`${student.day}s @ ${student.time}`}</Text> */}
-    //     <SchedulingCard student={student}/>
-    //     <PaymentsCard student={student}/>
-    //     <View style={styles.footerFiller}></View>
-    //   </ScrollView>
-    //   <Footer student={student}/>
-    //   </View>
-
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  studentNameHeaderContainer: {
+    textAlign: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginBottom: 20,
   },
   text: {
     color: 'white',
@@ -111,9 +107,9 @@ const styles = StyleSheet.create({
   studentName: {
     color: 'white',
     fontFamily: 'economica',
-    fontSize: 40,
+    fontSize: 22,
     textAlign: 'center',
-    marginVertical: 20,
+    flex: 1,
   },
   footerFiller: {
     height: 100,

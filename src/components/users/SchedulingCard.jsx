@@ -1,29 +1,37 @@
-import React, { useState } from 'react';
-
+import React, { useState, useEffect } from 'react';
+import supabase from '../../../supabase';
+import getDates from '../../helpers/getDates';
 import { StyleSheet, View,  Text, Pressable } from 'react-native';
-
-
 
 
 export default function SchedulingCard({ student }) {
   const [showUpcomingLessons, setShowUpcomingLessons] = useState(false);
-  const fakeSchedule = [{
-    date: '7/21/23',
-    time: '4:00pm',
-  },
-  {
-    date: '7/28/23',
-    time: '4:00pm',
-  },
-  {
-    date: '8/4/23',
-    time: '4:00pm',
-  }]
-  if (student === null || student === undefined) {
-    student = {
-      makeups: 3,
+  const [scheduleDates, setScheduleDates] = useState(null);
+
+  const populateScheduleDates = async () => {
+  // Get the student's spot, check for new spot
+    const { data, er } = await supabase
+      .from('students')
+      .select('day, time, new_day, new_time')
+      .eq('id', student.id)
+    if (er) {console.error('Error getting day/time in SchedulingCard: ', er); }
+
+    console.log('data: ', data)
+      // Format spot and newSpot if necessary
+    const spot = { day: data[0].day, time: data[0].time };
+    let newSpot;
+    if (data[0].new_day) {
+      newSpot = { day: data[0].new_day, time: data[0].new_time, startDate: data[0].new_spot_start_date };
     }
-    }
+  // Call getDates with spot and newSpot
+    const dates = getDates.regularSpot(spot, 10, newSpot);
+    console.log('dates: ', dates);
+  // Set scheduleDates state
+    setScheduleDates(dates);
+}
+  useEffect(() => {
+    populateScheduleDates();
+  }, [])
 
   return (
     <View style={styles.container}>
@@ -47,8 +55,8 @@ export default function SchedulingCard({ student }) {
       <Pressable onPress={() => setShowUpcomingLessons(!showUpcomingLessons)}>
       <Text style={styles.label}>{showUpcomingLessons ? 'Hide' : 'Show'} Upcoming Lessons</Text>
       </Pressable>
-      {showUpcomingLessons ? fakeSchedule.map((lesson, index) => {
-        return <Text style={styles.text} key={index}>{lesson.date} @ {lesson.time}</Text>
+      {showUpcomingLessons ? scheduleDates.map((lesson, index) => {
+        return <Text style={styles.text} key={index}>{lesson}</Text>
       }) : null}
 
 
