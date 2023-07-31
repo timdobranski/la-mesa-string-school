@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import supabase from '../../../supabase';
-import { StyleSheet, View, Alert, Text, ImageBackground, Pressable, ScrollView } from 'react-native';
+import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
-import goTo from '../helpers/navigation';
-import { useNavigation } from '@react-navigation/native';
 
 
-export default function PracticeAndProgress() {
+export default function Progress() {
   const [userSession, setUserSession] = useState(null);
-  const nav = useNavigation();
+
 
   async function getAndSetSession ()  {
     const { data, error } = await supabase.auth.getSession()

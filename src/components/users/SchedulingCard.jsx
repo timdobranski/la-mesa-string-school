@@ -23,6 +23,11 @@ export default function SchedulingCard({ student }) {
     date: '8/4/23',
     time: '4:00pm',
   }]
+  if (student === null || student === undefined) {
+    student = {
+      makeups: 3,
+    }
+    }
 
   return (
     <View style={styles.container}>

@@ -1,32 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import supabase from '../../../supabase';
-import { StyleSheet, View, Alert, Text, ImageBackground, Pressable } from 'react-native';
-import Footer from '../Footer/Footer';
-import Header from '../Header/Header';
-import goTo from '../helpers/navigation';
-import { useNavigation } from '@react-navigation/native';
-
-
+import { StyleSheet, View, Text } from 'react-native';
+import React from 'react';
 
 export default function LogPracticeCard() {
-
 
   return (
     <View style={styles.container}>
       <Text style={styles.headerText}>Log A Practice Session</Text>
 
-
       <Text style={styles.label}>Log A Session</Text>
       <Text style={styles.comment}>Every little bit helps!</Text>
-
 
       <Text style={styles.label}>Set Reminders</Text>
       <Text style={styles.comment}>Edit or toggle on/off reminders to practice</Text>
 
-
       <Text style={styles.comment}></Text>
     </View>
-
   );
 }
 

@@ -54,26 +54,37 @@ export default function UserHome() {
 
     // get and set session on page load
     useEffect(() => {
-      //getAndSetSession();
-      getAndSetStudent()
+      // getAndSetStudent()
     }, [])
 
 
   return (
 
-    isLoading === true ? <Text>Loading...</Text> :
+    // isLoading === true ? <Text>Loading...</Text> :
+
+    // <View style={styles.container}>
+    //   <ScrollView style={styles.scrollContainer}>
+    //     <Header />
+    //       <Text style={styles.studentName}>{`${student.first_name} ${student.last_name}`}</Text>
+    //       <Text style={styles.studentName}>{`${student.day}s @ ${student.time}`}</Text>
+    //       <SchedulingCard student={student}/>
+    //       <PaymentsCard student={student}/>
+    //       <View style={styles.footerFiller}></View>
+    //     </ScrollView>
+    //     <Footer student={student}/>
+    //     </View>
 
     <View style={styles.container}>
-      <ScrollView style={styles.scrollContainer}>
-        <Header />
-          <Text style={styles.studentName}>{`${student.first_name} ${student.last_name}`}</Text>
-          <Text style={styles.studentName}>{`${student.day}s @ ${student.time}`}</Text>
-          <SchedulingCard student={student}/>
-          <PaymentsCard student={student}/>
-          <View style={styles.footerFiller}></View>
-        </ScrollView>
-        <Footer student={student}/>
-        </View>
+    <ScrollView style={styles.scrollContainer}>
+      <Header />
+        <Text style={styles.studentName}>{`Jimi Hendrix`}</Text>
+        {/* <Text style={styles.studentName}>{`${student.day}s @ ${student.time}`}</Text> */}
+        <SchedulingCard student={student}/>
+        <PaymentsCard student={student}/>
+        <View style={styles.footerFiller}></View>
+      </ScrollView>
+      <Footer student={student}/>
+      </View>
 
   );
 }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Alert, StyleSheet, View, Switch, Text, ScrollView, Pressable } from 'react-native'
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import  supabase  from '../../../supabase'
 import { Button, Input } from '@rneui/themed'
 import { useNavigation } from '@react-navigation/native';
@@ -8,28 +9,25 @@ import format from '../helpers/format'
 import goTo from '../helpers/navigation';
 
 
-export default function SignUp3AddInfo ({ route }) {
+export default function SignUp3AddInfo ({ session, user, studentId, tokens }) {
   const [email, setEmail] = useState('');
   const [ loading, setLoading ] = useState(false);
   const [ firstName, setFirstName ] = useState('');
   const [ lastName, setLastName ] = useState('');
   const [ phone, setPhone ] = useState('');
   const [ communicationPreference, setCommunicationPreference ] = useState('email');
-  const [ session, setSession ] = useState(null);
-  const [ user, setUser ] = useState(null);
 
-
-  const { studentId } = route.params;
   const nav = useNavigation();
 
 
 
-  async function handleSupabaseSignIn() {
-    const session = await supabase.auth.getSession();
-    setSession(session);
-    const { data: { user } } = await supabase.auth.getUser()
-    setUser(user);
-  }
+  // async function handleSupabaseSignIn() {
+  //   const session = await supabase.auth.getSession();
+  //   setSession(session);
+  //   const { data: { user } } = await supabase.auth.getUser()
+  //   setUser(user);
+  // }
+  // phone number formatter
 
   const handlePhoneNumberChange = (input) => {
     const formattedPhoneNumber = format.phoneNumber(input);
@@ -37,35 +35,33 @@ export default function SignUp3AddInfo ({ route }) {
   };
 
   useEffect(() => {
-    handleSupabaseSignIn();
+
   }, [])
 
 
   async function signUpWithEmail() {
     setLoading(true)
     // add data to users table
-    const { data, error } = await supabase
+    const { insertError } = await supabase
       .from('users')
       .insert({
-        email: email || user.identities[0].identity_data.email,
+        preferred_email: email || user.identities[0].identity_data.email,
+        access_token: tokens.accessToken,
         first_name: firstName,
         last_name: lastName,
         phone: phone,
-        comm_pref: communicationPreference,
+        preferred_comm: communicationPreference,
         student_id: studentId,
         auth_user_id: user.identities[0].user_id,
       })
-      if (error) {
-        Alert.alert(error.message)
+      if (insertError) {
+        Alert.alert(insertError.message)
         setLoading(false)
         return
       } else {
         goTo.UserHome(nav);
-
       }
   }
-
-
 
   return (
     <ScrollView>
@@ -140,13 +136,12 @@ export default function SignUp3AddInfo ({ route }) {
             <Text style={communicationPreference === 'Text' ? styles.buttonTextSelected : styles.buttonText}>Text Message</Text>
           </Pressable>
 
-
         </View>
       </View>
     </View>
 
       <View style={styles.verticallySpaced}>
-        <Button title="Complete Signup" disabled={loading} onPress={() => signUpWithEmail()} />
+        <Button title="Complete Signup" disabled={loading} onPress={signUpWithEmail} />
       </View>
     </View>
     </ScrollView>

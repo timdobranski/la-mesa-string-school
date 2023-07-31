@@ -31,18 +31,10 @@ const goTo = {
     console.log('Going to User Profile');
     navigation.navigate('User Profile');
   },
-  SignUp1SelectSpot: (navigation) => {
-    console.log('Going to Select Spot');
-    navigation.navigate('Sign Up 1: Select Spot');
+  SignUp: (navigation) => {
+    console.log('Going to Sign Up');
+    navigation.navigate('Sign Up');
   },
-  SignUp2ConfirmAndGoogle: (navigation) => {
-    console.log('Going to Sign Up 2 Confirm And Google');
-    navigation.navigate('Sign Up 2: Confirm And Google');
-  },
-  SignUp3AddInfo: (navigation) => {
-    console.log('Going to Sign Up 3 Add Info');
-    navigation.navigate('Sign Up 3: Add Info');
-  }
   };
 
 export default goTo;

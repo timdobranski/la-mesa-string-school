@@ -6,9 +6,11 @@ import { useNavigation } from '@react-navigation/native';
 
 export default function SignOut() {
   const nav = useNavigation();
-  async function signOut() {
+
+  async function signUserOut() {
     try {
-      await supabase.auth.signOut();
+      const response = await supabase.auth.signOut();
+      console.log('User signed out successfully', response);
       goTo.GuestHome(nav);
     } catch (error) {
       Alert.alert('Error signing out', error.message);
@@ -16,7 +18,7 @@ export default function SignOut() {
   }
 
   return (
-    <Pressable style={styles.button} onPress={signOut}>
+    <Pressable style={styles.button} onPress={signUserOut}>
       <Text style={styles.buttonText}>Sign Out</Text>
     </Pressable>
   );

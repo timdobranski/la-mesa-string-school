@@ -36,10 +36,7 @@ export default function SignIn() {
         if (error) {
           console.error('Error signing in with Supabase: ', error.message);
         }
-        console.log('Signed in user: ', JSON.stringify(data));
-        const { user: sessionUser } = data;
-        console.log()
-        return data;
+        if (data) {goTo.UserHome(nav);}
 
     } catch (error) {
       console.error('Error handling Supabase sign-in:', error.message);
@@ -73,46 +70,12 @@ async function signInWithGoogle() {
   try {
     const userInfo = await GoogleSignin.signIn();
     console.log('google response: ', userInfo);
-
     await handleSupabaseSignIn(userInfo.user)
-
-
-
-
   } catch (error) {
     console.log('catch error: ', error);
+  }
 }
-}
 
-
-
-      // signout
-      async function signOut() {
-        supabase.auth.signOut()
-        .then((res) => {
-          console.log('signed out: ', res);
-        })
-        .catch((err) => {
-          console.log('error signing out: ', err);
-        })
-      }
-      // logs the session
-      const logSession = () => {
-        supabase.auth.storage.session()
-        .then((session) => {
-          console.log('session from logSession: ', session);
-          if (session.user) {
-            goTo.UserHome(nav);
-          }
-        })
-      }
-
-      // signInWithGoogle options:
-      // webClientId: GOOGLE_WEB_CLIENT_ID, // client ID of type WEB for your server (needed to verify user ID and offline access)
-      // offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
-      // hostedDomain: '', // specifies a hosted domain restriction
-      // openIdRealm: 'http://lamesastringschool.com', // [iOS] The OpenID2 realm of the home web server. This allows Google to include the user's OpenID Identifier in the OpenID Connect ID token.
-      // profileImageSize: 120, // [iOS] The desired height (and width) of the profile image. Defaults to 120px
 
       return (
         <View style={styles.container}>

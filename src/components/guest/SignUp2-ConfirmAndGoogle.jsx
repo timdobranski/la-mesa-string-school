@@ -10,18 +10,13 @@ import { GOOGLE_IOS_CLIENT_ID, GOOGLE_WEB_CLIENT_ID } from '@env';
 import supabase from '../../../supabase';
 
 
-const SignupNew = ({ route }) => {
+const SignupNew = ({ day, time, setStep, setSession, setUser, setTokens, setStudentId }) => {
   const nav = useNavigation();
   const [ text, setText] = useState('')
   const [ disabled, setDisabled] = useState(true)
   const [ studentName, setStudentName ] = useState(null)
   const [ studentLastName, setStudentLastName ] = useState(null)
-  const [studentId, setStudentId] = useState(null)
-  // const studentName = 'Tim';
 
-    //console.log('route: ', route);
-  const { day } = route.params;
-  const { time } = route.params;
 
   // get student name from supabase
   async function getStudentName() {
@@ -54,7 +49,6 @@ const SignupNew = ({ route }) => {
     }
   }, [text])
 
-
   const iOSclientId = GOOGLE_IOS_CLIENT_ID;
   const webClientId = GOOGLE_WEB_CLIENT_ID;
 
@@ -69,12 +63,11 @@ const SignupNew = ({ route }) => {
           console.error('Error signing in with Supabase: ', error.message);
         }
 
-        console.log('Signed up new user: ', JSON.stringify(data));
+        console.log('Signed up new user');
         const { user: sessionUser } = data;
         if (sessionUser) {
-          // console.log('session user confirmed: ', sessionUser)
-          // goTo.SignUp3AddInfo(nav);
-          nav.navigate('Sign Up 3: Add Info', { studentId: studentId })
+          setSession(sessionUser);
+          setUser(sessionUser);
         }
         // return data;
 
@@ -83,18 +76,21 @@ const SignupNew = ({ route }) => {
     }
   }
 
-
 // native google signin
 async function signInWithGoogle() {
   GoogleSignin.configure({
+    scopes: ['email', 'profile', 'https://www.googleapis.com/auth/calendar.events'],
     iosClientId: iOSclientId,
     webClientId: webClientId,
     offlineAccess: true,
   });
   try {
     const userInfo = await GoogleSignin.signIn();
-    console.log('google response: ', userInfo);
+    const tokens = await GoogleSignin.getTokens();
+    setTokens(tokens);
+    console.log('google tokens response: ', tokens);
     await handleSupabaseSignIn(userInfo.user)
+    setStep(3);
   } catch (error) {
     console.log('catch error: ', error);
 }
@@ -105,7 +101,8 @@ async function signInWithGoogle() {
       contentContainerStyle={styles.scrollviewChildren}
       style={styles.container} >
 
-      <Pressable onPress={() => goTo.SignUp1SelectSpot(nav)} style={styles.backContainer}>
+      <Pressable onPress={() => setStep(1)}
+      style={styles.backContainer}>
         <Ionicons name="arrow-back-circle" size={50} color="white" />
         <Text style={styles.text}>{ `To schedule`}</Text>
       </Pressable>

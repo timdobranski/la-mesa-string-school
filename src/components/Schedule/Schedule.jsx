@@ -6,7 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 import BorderGradient from '../users/BorderGradient.jsx';
 import goTo from '../helpers/navigation';
 
-export default function Schedule ({ type }) {
+export default function Schedule ({ type, setDay, setTime, setStep}) {
   const nav = useNavigation();
 
   // if not single schedule, render date range
@@ -23,7 +23,9 @@ export default function Schedule ({ type }) {
 
   const handleSpotPress = (day, time) => {
     console.log('day: ', day, 'time: ', time);
-    nav.navigate('Sign Up 2: Confirm And Google', {day: day, time: time})
+    setDay(day);
+    setTime(time);
+    setStep(2);
   }
 
 
@@ -40,7 +42,7 @@ export default function Schedule ({ type }) {
         />
         <Text style={styles.headerText}>Monday, July 10th</Text>
     </Pressable>
-    <Pressable style={styles.row} onPress={() => {goTo.SignUp2ConfirmAndGoogle(nav)}}>
+    <Pressable style={styles.row}>
       <Text style={[styles.cell, styles.time]}>6:00</Text>
       <Text style={[styles.spot, styles.monBooked, styles.cell]}>Open!</Text>
     </Pressable>

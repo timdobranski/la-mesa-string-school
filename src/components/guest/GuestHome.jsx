@@ -16,7 +16,10 @@ const GuestHome = () => {
   // check login status
   async function checkLoginStatus ()  {
     const { data, error } = await supabase.auth.getSession()
-    if (data.session) { console.log('guest home session return: ', data); goTo.UserHome(nav);}
+    if (data.session) { console.log('guest home session return: ', data);
+    // goTo.UserHome(nav);
+    supabase.auth.signOut();
+  }
     if (error) {console.log('Error in getSession: ', error);}
   }
 
@@ -35,7 +38,7 @@ const GuestHome = () => {
       </Text>
 
       <Pressable
-        onPress={() =>{ console.log('clicked!'); goTo.SignUp1SelectSpot(nav)}}
+        onPress={() =>{ console.log('clicked!'); goTo.SignUp(nav)}}
         style={styles.signInButton}>
           <Text style={styles.signInButtonText}>New User Signup</Text>
       </Pressable>

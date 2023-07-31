@@ -1,7 +1,13 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
-export default function ProfileCard({ student }) {
+// eslint-disable-next-line react/prop-types
+export default function ProfileCard({ student={
+  first_name: 'Timmy',
+  last_name: 'Dobranski',
+  email: 'timdobranski@gmail.com',
+  makeups: 14
+  } }) {
 
   return (
     <View style={styles.container}>

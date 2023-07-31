@@ -9,11 +9,11 @@ import { Ionicons } from '@expo/vector-icons';
 
 
 
-const SelectSpot = () => {
+const SelectSpot = ({ setStep, setDay, setTime, setStudentId }) => {
   const nav = useNavigation();
 
-  return (
 
+  return (
     < ScrollView contentContainerStyle={styles.scrollviewChildren} style={styles.container}>
       <View style={styles.headerContainer}>
       <Header />
@@ -26,7 +26,7 @@ const SelectSpot = () => {
       <Text style={styles.text}>
         {`To sign up, choose your current weekly spot below:`}
       </Text>
-      <Schedule type={'single'}/>
+      <Schedule type={'single'} setDay={setDay} setTime={setTime} setStep={setStep}/>
     </ScrollView>
 
   );

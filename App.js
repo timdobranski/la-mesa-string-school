@@ -10,9 +10,7 @@ import { createStackNavigator, TransitionPresets } from '@react-navigation/stack
 
 // signup
 import GuestHome from './src/components/guest/GuestHome';
-import SignUp1SelectSpot from './src/components/guest/SignUp1-SelectSpot';
-import SignUp2ConfirmAndGoogle from './src/components/guest/SignUp2-ConfirmAndGoogle';
-import SignUp3AddInfo from './src/components/guest/SignUp3-AddInfo';
+import SignUp from './src/components/guest/SignUp';
 // signin
 import SignInView from './src/components/guest/SignInView';
 // user
@@ -67,9 +65,8 @@ const navTheme = {
             >
               <Stack.Screen name="Guest Home" component={GuestHome} />
 
-              <Stack.Screen name="Sign Up 1: Select Spot" component={SignUp1SelectSpot} />
-              <Stack.Screen name="Sign Up 2: Confirm And Google" component={SignUp2ConfirmAndGoogle} />
-              <Stack.Screen name="Sign Up 3: Add Info" component={SignUp3AddInfo} />
+              <Stack.Screen name="Sign Up" component={SignUp} />
+
               <Stack.Screen name="Sign In" component={SignInView} />
               {/* <Stack.Screen name="Check Email" component={CheckEmail} /> */}
 

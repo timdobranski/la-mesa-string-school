@@ -42,13 +42,22 @@ export default function UserProfile() {
     }
   }
 
-
+  async function signUserOut() {
+    try {
+      await supabase.auth.signOut();
+        console.log('User signed out successfully');
+        goTo.GuestHome(nav);
+    } catch (error) {
+      Alert.alert('Error signing out', error.message);
+    }
+  }
 
     // get and set session on page load
     useEffect(() => {
       //getAndSetSession();
       getAndSetStudent()
     }, [])
+
 
   return (
     isLoading ? <Text>Loading...</Text> :
@@ -59,7 +68,7 @@ export default function UserProfile() {
         <ProfileCard student={student}/>
 
           <View style={styles.signOutContainer}>
-          <Pressable style={styles.signOut}>
+          <Pressable style={styles.signOut} onPress={signUserOut}>
             <Text style={styles.signOutText}>Sign Out</Text>
           </Pressable>
         </View>
