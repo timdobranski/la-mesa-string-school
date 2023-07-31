@@ -28,7 +28,7 @@ export default function ProfileCard({ student={
       <Text style={styles.label}>Preferred Communication Method</Text>
       <Text style={styles.comment}>Text</Text>
 
-      <Text style={styles.label}>Primary Contact for Levi:</Text>
+      <Text style={styles.label}>Primary Contact:</Text>
       <Text style={styles.comment}>Amanda</Text>
     </View>
   );

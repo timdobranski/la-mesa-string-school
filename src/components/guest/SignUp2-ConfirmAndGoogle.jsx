@@ -16,13 +16,14 @@ const SignupNew = ({ day, time, setStep, setSession, setUser, setTokens, setStud
   const [ disabled, setDisabled] = useState(true)
   const [ studentName, setStudentName ] = useState(null)
   const [ studentLastName, setStudentLastName ] = useState(null)
+  const [ spotConfirmCode, setSpotConfirmCode ] = useState(null)
 
 
   // get student name from supabase
   async function getStudentName() {
     const { data, error } = await supabase
       .from('students')
-      .select('first_name, last_name, id')
+      .select('first_name, last_name, id, spot_confirm_code')
       .eq('day', day)
       .eq('time', time)
       .limit(1)
@@ -35,6 +36,7 @@ const SignupNew = ({ day, time, setStep, setSession, setUser, setTokens, setStud
       setStudentName(data[0].first_name)
       setStudentLastName(data[0].last_name)
       setStudentId(data[0].id)
+      setSpotConfirmCode(data[0].spot_confirm_code)
     }
   }
 
@@ -44,7 +46,7 @@ const SignupNew = ({ day, time, setStep, setSession, setUser, setTokens, setStud
 
   // when text field changes, check if it matches student name
   useEffect(() => {
-    if (text === studentName) {
+    if (text === spotConfirmCode) {
       setDisabled(false)
     }
   }, [text])
@@ -115,17 +117,17 @@ async function signInWithGoogle() {
       <View style={styles.messageContainer}>
         <Text style={styles.header}>{`Student:`}</Text>
         <Text style={styles.header}>{`${studentName} ${studentLastName}`}</Text>
-        <Text style={styles.text}>{`Great! Next, sign in with Google below:`}</Text>
+        <Text style={styles.text}>{`Great, you're confirmed! Next, sign in with Google below:`}</Text>
         <Text style={styles.text}>{`*Google signin is required for scheduling access via Google calendar at this time`}</Text>
       </View>
        :
       <Text style={styles.text}>
-        { `To confirm that this is your spot, please enter the first name of the student below:`}
+        { `To confirm that this is your spot, please enter the 3 digit spot confirm code:`}
       </Text>}
       {disabled === false ?
       null :
       <Input
-          label="Student First Name"
+          label="Spot Confirm Code"
           labelStyle={styles.label}
           onChangeText={(text) => setText(text)}
           value={text}

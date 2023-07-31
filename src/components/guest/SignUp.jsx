@@ -48,7 +48,6 @@ const SignUp = () => {
 
       default:
         console.log('Step is not 1, 2, or 3');
-        // additional code for when step is any value other than 1, 2, or 3
         return <div>Default step</div>;
     }
   }
@@ -63,42 +62,8 @@ const SignUp = () => {
 
 const styles = StyleSheet.create({
   container: {
-    // backgroundColor: 'transparent',
     flex: 1
-  },
-  // headerContainer: {
-
-  // },
-  // scrollviewChildren: {
-  //   backgroundColor: 'transparent',
-  //   alignItems: 'center',
-  //   textAlign: 'center',
-  // },
-  // text: {
-  //   color: 'white',
-  //   fontSize: 22,
-  //   fontFamily: 'economica',
-  //   marginBottom: 30,
-  //   textAlign: 'center',
-  //   marginHorizontal: 20,
-  // },
-  // signInButton: {
-  //   backgroundColor: 'white',
-  //   borderRadius: 5,
-  //   padding: 10,
-  //   width: '25%',
-  //   alignItems: 'center',
-  //   marginBottom: 30,
-  // },
-  // signInButtonText: {
-  //   fontFamily: 'economica',
-  //   fontSize: 20,
-
-  // },
-  // backButton: {
-  //   marginBottom: 10,
-  //   textAlign: 'center',
-  // },
+  }
 });
 
 export default SignUp;
