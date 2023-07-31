@@ -9,5 +9,5 @@ This is a companion app for La Mesa String School guitar students. It includes t
 Currently (7/22/23) the app is in a skeleton form with only authentication features handled so far. The back end is set up via supabase, but with an ongoing issue pertaining to their handling of Google OAuth signin via react native, I''ve had to use a workaround to get Google signin working. Now that the skeleton is mostly built, I'll be implementing features throughout July and August until it's ready for deployment to my 20-30 weekly students.
 
 
-Demo of current state (7/22/23):
-<iframe width="560" height="315" src="https://www.youtube.com/watch?v=XGPN6fIwT2A" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+Demo of current state (7/22/23)
+https://www.youtube.com/watch?v=XGPN6fIwT2A
