@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import supabase from '../../../supabase';
 import getDates from '../../helpers/getDates';
+import goTo from '../../helpers/navigation';
+import { useNavigation } from '@react-navigation/native';
 import { StyleSheet, View,  Text, Pressable } from 'react-native';
 
 
 export default function SchedulingCard({ student }) {
+  const nav = useNavigation();
   const [showUpcomingLessons, setShowUpcomingLessons] = useState(false);
   const [scheduleDates, setScheduleDates] = useState(null);
 
@@ -25,10 +28,10 @@ export default function SchedulingCard({ student }) {
     }
   // Call getDates with spot and newSpot
     const dates = getDates.regularSpot(spot, 10, newSpot);
-    console.log('dates: ', dates);
   // Set scheduleDates state
     setScheduleDates(dates);
 }
+
   useEffect(() => {
     populateScheduleDates();
   }, [])
@@ -40,16 +43,15 @@ export default function SchedulingCard({ student }) {
       <Text style={styles.comment}>Makeups are added when you cancel before 2pm</Text>
       <Text style={styles.comment}>Limit of 4 max</Text>
 
-      <Text style={styles.text}>Move A Lesson</Text>
-      <Text style={styles.comment}>Cancel and reschedule now</Text>
-
-      <Text style={styles.text}>Cancel A Lesson</Text>
-      <Text style={styles.comment}>Cancel now and reschedule later</Text>
-
-      <Text style={styles.text}>Scheduling A Makeup</Text>
+      <Text style={styles.text}>Schedule A Makeup</Text>
       <Text style={styles.comment}>Use a makeup credit</Text>
 
-      <Text style={styles.text}>Move Spots</Text>
+      <Pressable onPress={() => goTo.Reschedule(nav)}>
+        <Text style={styles.text}>Move or Cancel A Lesson</Text>
+        <Text style={styles.comment}>Cancel and reschedule now or later</Text>
+      </Pressable>
+
+      <Text style={styles.text}>Change Spots</Text>
       <Text style={styles.comment}>Change to a different recurring weekly spot</Text>
 
       <Pressable onPress={() => setShowUpcomingLessons(!showUpcomingLessons)}>

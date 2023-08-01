@@ -35,6 +35,10 @@ const goTo = {
     console.log('Going to Sign Up');
     navigation.navigate('Sign Up');
   },
+  Reschedule: (navigation) => {
+    console.log('Going to Scheduling');
+    navigation.navigate('Scheduling');
+  },
   };
 
 export default goTo;

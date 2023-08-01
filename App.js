@@ -11,15 +11,13 @@ import { createStackNavigator, TransitionPresets } from '@react-navigation/stack
 // signup
 import GuestHome from './src/screens/guests/GuestHome';
 import SignUp from './src/screens/guests/SignUp';
-// signin
-// import SignInView from './src/components/guest/SignInView';
 // user
 import UserHome from './src/screens/users/UserHome';
 import Practice from './src/screens/users/Practice';
 import Progress from './src/screens/users/Progress';
 import StudentResources from './src/screens/users/StudentResources';
 import UserProfile from './src/screens/users/UserProfile';
-// import CheckEmail from './src/components/guest/CheckEmail';
+import Scheduling from './src/screens/users/Scheduling';
 
 
 const App = () => {
@@ -67,10 +65,8 @@ const navTheme = {
 
               <Stack.Screen name="Sign Up" component={SignUp} />
 
-              {/* <Stack.Screen name="Sign In" component={SignInView} /> */}
-              {/* <Stack.Screen name="Check Email" component={CheckEmail} /> */}
-
               <Stack.Screen name="User Home" component={UserHome} />
+              <Stack.Screen name="Scheduling" component={Scheduling} />
               <Stack.Screen name="User Profile" component={UserProfile} />
               <Stack.Screen name="Student Resources" component={StudentResources} />
               <Stack.Screen name="Scheduling & Payments" component={Practice} />
